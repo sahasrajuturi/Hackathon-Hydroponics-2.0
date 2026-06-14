@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const accordionHeaders = document.querySelectorAll('.accordion-header');
     const searchInput = document.getElementById('searchInput');
-    const accordionItems = document.querySelectorAll('.accordion-item');
     const categories = document.querySelectorAll('.faq-category');
     const noResults = document.getElementById('noResults');
 
@@ -10,27 +9,25 @@ document.addEventListener('DOMContentLoaded', () => {
         header.addEventListener('click', () => {
             const currentItem = header.parentElement;
             const content = currentItem.querySelector('.accordion-content');
-
-            // Check if item is already active
             const isActive = currentItem.classList.contains('active');
 
-            // Close all items in the same category for clean UX
+            // Close matching category items for cleaner UI
             const siblingItems = currentItem.parentElement.querySelectorAll('.accordion-item');
             siblingItems.forEach(item => {
                 item.classList.remove('active');
                 item.querySelector('.accordion-content').style.maxHeight = null;
             });
 
-            // If it wasn't active, open it
+            // Open if it wasn't already active
             if (!isActive) {
                 currentItem.classList.add('active');
-                // Calculate real height of inner text for smooth transition without lag
+                // Dynamically computes precise pixel height for stutter-free animations
                 content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     });
 
-    // --- Live Filtering Search Functionality ---
+    // --- Live Searching / Filtering Mechanism ---
     searchInput.addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase().trim();
         let totalVisibleQuestions = 0;
@@ -48,13 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     totalVisibleQuestions++;
                 } else {
                     item.classList.add('hidden');
-                    // Collapse item if it's hidden while open
                     item.classList.remove('active');
                     item.querySelector('.accordion-content').style.maxHeight = null;
                 }
             });
 
-            // Hide or show category headers dynamically based on content presence
+            // Dynamically hide category titles if all contents are filtered out
             if (visibleInGroup === 0 && searchTerm !== "") {
                 category.classList.add('hidden');
             } else {
@@ -62,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Display 'no results found' if query matches absolutely nothing
+        // Toggle visibility of empty search statement 
         if (totalVisibleQuestions === 0 && searchTerm !== "") {
             noResults.classList.remove('hidden');
         } else {
