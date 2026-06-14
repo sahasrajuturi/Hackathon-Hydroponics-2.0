@@ -4,217 +4,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmspherica | Interactive Smart Hydroponics</title>
+    <title>Farmspherica | Next-Gen Smart Hydroponics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="overflow-x-hidden text-slate-800 antialiased">
+<body class="overflow-x-hidden text-slate-800 antialiased relative">
 
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-emerald-50/60">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="bg-orb bg-gradient-to-tr from-emerald-400/20 to-teal-400/0 top-10 left-[5%]" data-speed="2"></div>
+        <div class="bg-orb bg-gradient-to-br from-blue-400/15 to-emerald-400/0 top-[40%] right-[-5%]" data-speed="-3">
+        </div>
+        <div class="bg-orb bg-gradient-to-r from-lime-400/10 to-teal-400/10 bottom-[15%] left-[-10%]" data-speed="4">
+        </div>
+    </div>
+
+    <nav
+        class="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-emerald-100/40 shadow-sm shadow-emerald-500/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
+            <div class="flex items-center gap-3">
                 <div
-                    class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
-                    <i class="fa-solid fa-seedling text-white text-lg"></i>
+                    class="w-11 h-11 bg-gradient-to-tr from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30 group">
+                    <i
+                        class="fa-solid fa-seedling text-white text-xl transition-transform duration-500 group-hover:rotate-12"></i>
                 </div>
-                <span class="text-xl font-bold tracking-tight text-slate-900">Farmspherica</span>
+                <span
+                    class="text-2xl font-black tracking-tight bg-gradient-to-r from-emerald-900 to-teal-700 bg-clip-text text-transparent">Farmspherica</span>
             </div>
             <a href="#cta-section"
-                class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-5 py-2.5 rounded-xl transition duration-300 shadow-md shadow-emerald-600/10 text-sm">
+                class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold px-6 py-2.5 rounded-xl transition-all duration-300 shadow-md shadow-emerald-600/20 text-sm hover:scale-[1.03]">
                 Get Started
             </a>
         </div>
     </nav>
 
     <header
-        class="relative min-h-[90vh] flex items-center bg-gradient-to-b from-emerald-50/40 via-white to-white pt-4 pb-16 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-16 items-center relative z-10 w-full">
+        class="relative min-h-[95vh] flex items-center bg-gradient-to-b from-emerald-50/60 via-white to-white pt-4 pb-16 overflow-hidden z-10">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-16 items-center w-full relative">
 
-            <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+            <div class="lg:col-span-6 space-y-6 text-center lg:text-left relative z-10">
                 <div
-                    class="inline-flex items-center gap-2 bg-emerald-100/70 border border-emerald-200/50 text-emerald-800 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
-                    <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span> 100% Soil-Free
-                    Innovation
+                    class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-200 text-emerald-900 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider shadow-inner">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span> Future Eco System Built
+                    Today
                 </div>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.12]">
-                    Fresh, clean food grown <span class="text-emerald-600 relative inline-block">without dirt.<span
-                            class="absolute bottom-1 left-0 w-full h-2 bg-emerald-100 -z-10 rounded"></span></span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+                    Fresh, delicious food grown <span
+                        class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 bg-clip-text text-transparent relative">without
+                        soil.</span>
                 </h1>
-                <p class="text-lg text-slate-600 font-medium max-w-xl mx-auto lg:mx-0">
-                    Smart indoor vertical farming architectures simplified for home countertops, offices, and modern
-                    urban living spaces.
+                <p class="text-lg text-slate-600 font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    Smart automated vertical indoor garden ecosystems. Experience uncompromised cleanliness right on
+                    your home kitchen counter.
                 </p>
                 <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                     <a href="#cta-section"
-                        class="w-full sm:w-auto text-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-4 rounded-xl transition duration-300 shadow-xl shadow-emerald-600/20 hover:scale-[1.02]">
+                        class="w-full sm:w-auto text-center bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold px-8 py-4 rounded-xl transition duration-300 shadow-xl shadow-teal-600/30 hover:scale-[1.03]">
                         Get Started <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
                     </a>
                     <a href="#about"
-                        class="w-full sm:w-auto text-center bg-white border border-slate-200 hover:border-emerald-300 text-slate-700 font-semibold px-8 py-4 rounded-xl transition hover:bg-emerald-50/20">
-                        How it Works
+                        class="w-full sm:w-auto text-center bg-white border border-slate-200 hover:border-emerald-400 text-slate-700 font-bold px-8 py-4 rounded-xl transition hover:bg-emerald-50/10">
+                        Explore Technology
                     </a>
                 </div>
             </div>
 
-            <div class="lg:col-span-6 scene-3d h-[450px] sm:h-[550px] w-full flex items-center justify-center relative">
+            <div class="lg:col-span-6 scene-3d h-[500px] sm:h-[600px] w-full flex items-center justify-center relative">
+
                 <div
-                    class="card-3d bg-white w-full max-w-md aspect-[4/3.8] rounded-[32px] border border-slate-100 shadow-[0_30px_70px_rgba(15,23,42,0.06)] p-8 relative flex flex-col justify-between overflow-hidden">
+                    class="card-3d bg-white w-full max-w-md aspect-[4/3.8] rounded-[36px] border border-emerald-100 shadow-[0_40px_90px_rgba(4,120,87,0.08)] p-8 relative flex flex-col justify-between overflow-hidden">
+                    <div class="absolute inset-x-0 bottom-0 h-1/4 water-fluid-wave opacity-15 rounded-b-[36px]"></div>
 
-                    <div class="absolute inset-x-0 bottom-0 h-1/3 water-fluid-wave opacity-10 rounded-b-[32px]"></div>
-
-                    <div class="w-full h-44 relative flex items-center justify-center mt-4">
-                        <div class="absolute w-24 h-24 bg-emerald-500/10 rounded-full blur-xl animate-pulse"></div>
-
+                    <div class="w-full h-48 relative flex items-center justify-center mt-4">
+                        <div class="absolute w-32 h-32 bg-emerald-400/20 rounded-full blur-2xl animate-pulse"></div>
                         <div
-                            class="relative w-28 h-28 bg-gradient-to-tr from-emerald-100 to-teal-50 border border-emerald-300/40 rounded-2xl flex items-center justify-center shadow-inner group">
-                            <div
-                                class="absolute inset-0 flex items-center justify-center text-emerald-300/40 text-7xl font-bold plant-layer-1 select-none">
-                                ROOTS</div>
-                            <div class="absolute text-emerald-600 text-5xl plant-layer-2">
+                            class="relative w-32 h-32 bg-gradient-to-tr from-emerald-500 to-teal-500 border-2 border-white rounded-3xl flex items-center justify-center shadow-2xl group transition-transform duration-500">
+                            <div class="absolute text-white text-6xl plant-layer-2">
                                 <i class="fa-solid fa-seedling"></i>
                             </div>
-                            <div class="absolute w-32 h-32 border-2 border-dashed border-emerald-400/30 rounded-full animate-spin plant-layer-3"
-                                style="animation-duration: 15s;"></div>
+                            <div class="absolute w-36 h-36 border-2 border-dashed border-teal-400/40 rounded-full animate-spin plant-layer-3"
+                                style="animation-duration: 20s;"></div>
                         </div>
                     </div>
 
                     <div class="relative z-10 space-y-2">
-                        <div class="h-1 w-12 bg-emerald-500 rounded-full"></div>
-                        <h4 class="text-base font-bold text-slate-800">Farmspherica Automation Array</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Continuous digital monitoring maintains
-                            localized ecosystem nourishment ratios flawlessly.</p>
+                        <div class="h-1 w-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full"></div>
+                        <h4 class="text-lg font-extrabold text-slate-900">Hydro-Core Array System v2.6</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed font-medium">Automatic mineral saturation
+                            tracking software runs micro-dosing protocols seamlessly.</p>
                     </div>
 
                     <div
-                        class="floating-badge-3d absolute top-12 -right-6 bg-slate-900 text-white p-4.5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3.5 border border-slate-800">
+                        class="floating-badge-3d absolute top-8 -right-8 bg-slate-950 p-5 rounded-3xl shadow-[0_25px_50px_rgba(0,0,0,0.3)] border border-slate-800 w-56 flex flex-col items-center overflow-hidden group">
+
                         <div
-                            class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 shadow-inner">
-                            <i class="fa-solid fa-droplet text-lg animate-bounce"></i>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-black text-white tracking-tight" id="live-water-counter">0%</div>
-                            <div class="text-[10px] font-bold uppercase tracking-widest text-emerald-400">Water Saved
+                            class="w-full h-24 bg-slate-900 border border-slate-800 rounded-2xl relative overflow-hidden flex items-end justify-center mb-3 group-hover:border-blue-500/40 transition">
+                            <div class="hydro-water-fill"></div>
+
+                            <div class="nutrient-bubble left-12 animate-bubble" style="animation-delay: 0.2s;"></div>
+                            <div class="nutrient-bubble left-24 animate-bubble" style="animation-delay: 0.9s;"></div>
+                            <div class="nutrient-bubble right-16 animate-bubble" style="animation-delay: 1.5s;"></div>
+
+                            <div class="absolute z-10 bottom-6 text-emerald-400 text-3xl animate-bounce tracking-wide select-none"
+                                style="animation-duration: 3s;">
+                                <i class="fa-solid fa-circle-nodes opacity-40 absolute scale-150 -translate-x-1"></i>
+                                <i class="fa-solid fa-seedling relative"></i>
                             </div>
                         </div>
+
+                        <div class="text-center w-full z-10">
+                            <div class="text-3xl font-black text-white tracking-tight" id="live-water-counter">0%</div>
+                            <div
+                                class="text-[10px] font-extrabold uppercase tracking-widest bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mt-0.5">
+                                Water Preserved</div>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
         </div>
     </header>
 
-    <section id="about" class="py-24 bg-white reveal">
+    <section id="about" class="py-24 bg-white relative z-10 border-t border-emerald-50/40 reveal">
         <div class="max-w-5xl mx-auto px-6 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">What is Hydroponics?</h2>
-            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-light">
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mb-6">What is Hydroponics?</h2>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-normal">
                 Simply put, hydroponics is the method of growing plants <strong
-                    class="font-semibold text-emerald-700">entirely without soil</strong>. Instead of stretching their
-                roots to find nutrients in dirt, plants sit in clean water infused with natural minerals. It gives them
+                    class="font-bold text-emerald-600">entirely without soil</strong>. Instead of stretching their roots
+                to find nutrients in dirt, plants sit in clean water infused with natural minerals. It gives them
                 exactly what they need, right when they need it.
             </p>
 
             <div class="mt-20 grid md:grid-cols-12 gap-12 items-center text-left">
                 <div
-                    class="md:col-span-6 scene-3d h-[380px] flex items-center justify-center bg-slate-50/50 rounded-3xl border border-slate-100 overflow-hidden relative">
+                    class="md:col-span-6 scene-3d h-[400px] flex items-center justify-center bg-gradient-to-tr from-emerald-50/30 to-blue-50/20 rounded-3xl border border-emerald-100/50 overflow-hidden relative">
                     <div
-                        class="grid-3d-system w-72 h-44 bg-slate-200/60 rounded-xl relative p-3 border border-slate-300/40 shadow-inner">
+                        class="grid-3d-system w-76 h-48 bg-gradient-to-r from-slate-100 to-slate-200/80 rounded-2xl relative p-4 border border-slate-300 shadow-2xl">
                         <div
-                            class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-4 bg-blue-400/40 border-y border-blue-400/60 animate-pulse">
+                            class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-5 bg-gradient-to-r from-blue-500 to-teal-400 opacity-60 animate-pulse">
                         </div>
 
                         <div
-                            class="absolute top-4 left-6 w-14 h-14 bg-white rounded-xl shadow-lg border border-slate-200 grow-tube flex flex-col items-center justify-center">
+                            class="absolute top-4 left-6 w-14 h-14 bg-white rounded-xl shadow-lg border border-slate-200/80 grow-tube flex flex-col items-center justify-center">
                             <i class="fa-solid fa-leaf text-emerald-500 text-xs plant-layer-2"></i>
-                            <span class="text-[8px] font-bold text-slate-400 mt-1">Pod A</span>
+                            <span class="text-[8px] font-extrabold text-slate-400 mt-1">Pod Alpha</span>
                         </div>
                         <div
-                            class="absolute top-4 left-28 w-14 h-14 bg-white rounded-xl shadow-lg border border-slate-200 grow-tube flex flex-col items-center justify-center">
-                            <i class="fa-solid fa-leaf text-emerald-500 text-sm plant-layer-2"></i>
-                            <span class="text-[8px] font-bold text-slate-400 mt-1">Pod B</span>
+                            class="absolute top-4 left-28 w-14 h-14 bg-white rounded-xl shadow-lg border border-slate-200/80 grow-tube flex flex-col items-center justify-center">
+                            <i class="fa-solid fa-leaf text-teal-500 text-sm plant-layer-2"></i>
+                            <span class="text-[8px] font-extrabold text-slate-400 mt-1">Pod Beta</span>
                         </div>
                         <div
-                            class="absolute top-4 left-52 w-14 h-14 bg-white rounded-xl shadow-lg border border-slate-200 grow-tube flex flex-col items-center justify-center">
+                            class="absolute top-4 left-52 w-14 h-14 bg-white rounded-xl shadow-lg border border-slate-200/80 grow-tube flex flex-col items-center justify-center">
                             <i class="fa-solid fa-leaf text-emerald-600 text-base plant-layer-2 animate-pulse"></i>
-                            <span class="text-[8px] font-bold text-slate-400 mt-1">Pod C</span>
+                            <span class="text-[8px] font-extrabold text-slate-400 mt-1">Pod Gamma</span>
                         </div>
                     </div>
 
                     <div
-                        class="absolute bottom-6 right-6 bg-emerald-50 border border-emerald-100 p-3 rounded-xl text-[11px] font-medium text-emerald-800 flex items-center gap-2">
-                        <i class="fa-solid fa-rotate text-emerald-600 animate-spin" style="animation-duration: 6s;"></i>
-                        Interactive 3D System Layout Rig
+                        class="absolute bottom-6 right-6 bg-slate-900 border border-slate-800 text-white p-3 rounded-xl text-[11px] font-bold flex items-center gap-2 shadow-xl">
+                        <i class="fa-solid fa-rotate text-emerald-400 animate-spin" style="animation-duration: 5s;"></i>
+                        3D Circulation Matrix
                     </div>
                 </div>
 
                 <div class="md:col-span-6 space-y-6">
-                    <h3 class="text-2xl font-bold text-slate-900">Why roots love it.</h3>
-                    <p class="text-slate-600 leading-relaxed">
+                    <h3 class="text-2xl font-black text-slate-900">Why roots love it.</h3>
+                    <p class="text-slate-600 leading-relaxed font-medium text-sm sm:text-base">
                         Because the roots are suspended directly in water or nutrient-rich mist, they never have to
                         fight compact soil or droughts. This lets the plant spend all its energy growing massive leaves,
                         crisp textures, and incredible flavors above the surface.
                     </p>
-                    <ul class="space-y-3.5 font-medium text-slate-700 text-sm">
-                        <li class="flex items-center gap-3"><span
-                                class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs"><i
-                                    class="fa-solid fa-check"></i></span> No messy weeds or garden dirt</li>
-                        <li class="flex items-center gap-3"><span
-                                class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs"><i
-                                    class="fa-solid fa-check"></i></span> Optimized root oxygen intake channels</li>
-                        <li class="flex items-center gap-3"><span
-                                class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs"><i
-                                    class="fa-solid fa-check"></i></span> Cleaner, indoor pest-resistant ecosystems</li>
+                    <ul class="space-y-4 font-bold text-slate-700 text-xs sm:text-sm">
+                        <li class="flex items-center gap-3.5"><span
+                                class="w-6 h-6 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/20"><i
+                                    class="fa-solid fa-check"></i></span> Zero weeds or heavy messy garden dirt</li>
+                        <li class="flex items-center gap-3.5"><span
+                                class="w-6 h-6 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/20"><i
+                                    class="fa-solid fa-check"></i></span> Optimized oxygen saturation intake feeds</li>
+                        <li class="flex items-center gap-3.5"><span
+                                class="w-6 h-6 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/20"><i
+                                    class="fa-solid fa-check"></i></span> Ultra-clean indoor pathogen-resistant layers
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-slate-50/60 border-y border-slate-100/80 reveal">
+    <section
+        class="py-24 bg-gradient-to-b from-slate-50 to-emerald-50/20 border-y border-emerald-100/30 relative z-10 reveal">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold text-slate-900">How Farmspherica Works</h2>
-                <p class="text-slate-600 mt-2 text-sm">Three simple steps to transition from seed to a plate full of
-                    greens.</p>
+                <h2 class="text-3xl font-black text-slate-900">How Farmspherica Works</h2>
+                <p class="text-slate-600 mt-2 text-sm font-medium">Three simple steps to transition from seed to a plate
+                    full of greens.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 scene-3d">
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative group hover:border-emerald-200 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative group hover:border-emerald-400 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl">
                     <div
-                        class="w-12 h-12 bg-emerald-50 group-hover:bg-emerald-500 rounded-xl flex items-center justify-center text-emerald-600 group-hover:text-white transition duration-300 text-base font-bold mb-6">
+                        class="w-12 h-12 bg-gradient-to-tr from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center text-white font-extrabold text-sm mb-6 shadow-md shadow-emerald-500/20">
                         01
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Drop in the Pods</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <h3 class="text-lg font-black text-slate-900 mb-2">Drop in the Pods</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed font-medium">
                         Place our pre-seeded organic pods into your Farmspherica setup. No dirt, no planting stress.
                     </p>
                 </div>
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative group hover:border-emerald-200 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative group hover:border-teal-400 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl">
                     <div
-                        class="w-12 h-12 bg-emerald-50 group-hover:bg-emerald-500 rounded-xl flex items-center justify-center text-emerald-600 group-hover:text-white transition duration-300 text-base font-bold mb-6">
+                        class="w-12 h-12 bg-gradient-to-tr from-teal-500 to-blue-500 rounded-xl flex items-center justify-center text-white font-extrabold text-sm mb-6 shadow-md shadow-teal-500/20">
                         02
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Fill the Water Base</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <h3 class="text-lg font-black text-slate-900 mb-2">Fill the Water Base</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed font-medium">
                         Add water and our organic mineral solution once. The self-circulating system handles the rest.
                     </p>
                 </div>
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative group hover:border-emerald-200 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative group hover:border-emerald-400 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl">
                     <div
-                        class="w-12 h-12 bg-emerald-50 group-hover:bg-emerald-500 rounded-xl flex items-center justify-center text-emerald-600 group-hover:text-white transition duration-300 text-base font-bold mb-6">
+                        class="w-12 h-12 bg-gradient-to-tr from-emerald-500 to-lime-500 rounded-xl flex items-center justify-center text-white font-extrabold text-sm mb-6 shadow-md shadow-emerald-500/20">
                         03
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Harvest Fresh Food</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <h3 class="text-lg font-black text-slate-900 mb-2">Harvest Fresh Food</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed font-medium">
                         Watch your greens mature up to three times faster than normal soil gardening. Cut and eat fresh!
                     </p>
                 </div>
@@ -222,27 +246,27 @@
         </div>
     </section>
 
-    <section class="py-24 bg-white reveal">
+    <section class="py-24 bg-white relative z-10 reveal">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-4 space-y-4">
-                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight">
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight">
                         Farming reimagined for modern life.
                     </h2>
-                    <p class="text-slate-600 text-sm">
+                    <p class="text-slate-600 text-sm font-medium">
                         By skipping traditional soil farming, we eliminate geographic constraints and maximize
                         efficiency naturally.
                     </p>
 
                     <div
-                        class="p-6 bg-blue-50/60 border border-blue-100 rounded-2xl mt-6 relative overflow-hidden group">
+                        class="p-6 bg-gradient-to-br from-blue-500/5 to-teal-500/5 border border-blue-200/60 rounded-2xl mt-6 relative overflow-hidden group">
                         <div
-                            class="absolute -right-6 -bottom-6 w-20 h-20 bg-blue-500/10 rounded-full group-hover:scale-150 transition duration-500">
+                            class="absolute -right-6 -bottom-6 w-24 h-24 bg-blue-500/10 rounded-full group-hover:scale-150 transition duration-500">
                         </div>
-                        <div class="flex items-center gap-2 text-blue-700 font-bold mb-1.5 text-sm">
+                        <div class="flex items-center gap-2 text-blue-700 font-extrabold mb-1.5 text-sm">
                             <i class="fa-solid fa-chart-line animate-pulse"></i> Automated Eco-Impact Analysis
                         </div>
-                        <p class="text-xs text-blue-900/80 leading-relaxed">
+                        <p class="text-xs text-blue-900/80 leading-relaxed font-medium">
                             A singular integrated modular array scales localized fresh food loops seamlessly while
                             saving thousands of ambient gallons of tap water water yearly.
                         </p>
@@ -250,50 +274,50 @@
                 </div>
 
                 <div class="lg:col-span-8 grid sm:grid-cols-2 gap-6 scene-3d">
-                    <div class="p-8 border border-slate-100 rounded-2xl bg-slate-50/40 hover:bg-white hover:border-emerald-200 hover:shadow-xl transition duration-300 group card-3d"
-                        style="transform: none;">
+                    <div
+                        class="p-8 border border-emerald-100 rounded-3xl bg-slate-50/40 hover:bg-white hover:border-blue-400 hover:shadow-2xl transition duration-300 group card-3d-benefit">
                         <div
-                            class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-base mb-6 group-hover:scale-110 transition duration-300">
+                            class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 text-white flex items-center justify-center text-lg mb-6 group-hover:scale-110 shadow-md shadow-blue-500/20 transition">
                             <i class="fa-solid fa-droplet"></i>
                         </div>
-                        <h3 class="font-bold text-slate-900 mb-2">Saves Water</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
+                        <h3 class="font-black text-slate-900 mb-2">Saves Water</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-medium">
                             Recirculates water continuously, utilizing up to 90% less water than growing in standard
                             ground soil fields.
                         </p>
                     </div>
-                    <div class="p-8 border border-slate-100 rounded-2xl bg-slate-50/40 hover:bg-white hover:border-emerald-200 hover:shadow-xl transition duration-300 group card-3d"
-                        style="transform: none;">
+                    <div
+                        class="p-8 border border-emerald-100 rounded-3xl bg-slate-50/40 hover:bg-white hover:border-amber-400 hover:shadow-2xl transition duration-300 group card-3d-benefit">
                         <div
-                            class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-base mb-6 group-hover:scale-110 transition duration-300">
+                            class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white flex items-center justify-center text-lg mb-6 group-hover:scale-110 shadow-md shadow-amber-500/20 transition">
                             <i class="fa-solid fa-bolt"></i>
                         </div>
-                        <h3 class="font-bold text-slate-900 mb-2">Grows Faster</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
+                        <h3 class="font-black text-slate-900 mb-2">Grows Faster</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-medium">
                             Direct mineral nutrition enables roots to feed effortlessly, speeding up growth rates by up
                             to 300%.
                         </p>
                     </div>
-                    <div class="p-8 border border-slate-100 rounded-2xl bg-slate-50/40 hover:bg-white hover:border-emerald-200 hover:shadow-xl transition duration-300 group card-3d"
-                        style="transform: none;">
+                    <div
+                        class="p-8 border border-emerald-100 rounded-3xl bg-slate-50/40 hover:bg-white hover:border-emerald-400 hover:shadow-2xl transition duration-300 group card-3d-benefit">
                         <div
-                            class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-base mb-6 group-hover:scale-110 transition duration-300">
+                            class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white flex items-center justify-center text-lg mb-6 group-hover:scale-110 shadow-md shadow-emerald-500/20 transition">
                             <i class="fa-solid fa-ban"></i>
                         </div>
-                        <h3 class="font-bold text-slate-900 mb-2">No Soil Needed</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
+                        <h3 class="font-black text-slate-900 mb-2">No Soil Needed</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-medium">
                             Perfect for urban apartments, countertops, or clean indoor spaces. Zero pests from
                             underground soil layers.
                         </p>
                     </div>
-                    <div class="p-8 border border-slate-100 rounded-2xl bg-slate-50/40 hover:bg-white hover:border-emerald-200 hover:shadow-xl transition duration-300 group card-3d"
-                        style="transform: none;">
+                    <div
+                        class="p-8 border border-emerald-100 rounded-3xl bg-slate-50/40 hover:bg-white hover:border-purple-400 hover:shadow-2xl transition duration-300 group card-3d-benefit">
                         <div
-                            class="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-base mb-6 group-hover:scale-110 transition duration-300">
+                            class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 text-white flex items-center justify-center text-lg mb-6 group-hover:scale-110 shadow-md shadow-purple-500/20 transition">
                             <i class="fa-solid fa-cloud-sun"></i>
                         </div>
-                        <h3 class="font-bold text-slate-900 mb-2">All Year Round</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
+                        <h3 class="font-black text-slate-900 mb-2">All Year Round</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed font-medium">
                             Disregard changing winter frost or summer heat waves. Enjoy fresh harvests 365 days a year
                             without worry.
                         </p>
@@ -303,58 +327,48 @@
         </div>
     </section>
 
-    <section class="py-12 bg-white reveal">
+    <section class="py-12 bg-white relative z-10 reveal">
         <div class="max-w-7xl mx-auto px-6">
             <div
-                class="rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 text-white grid md:grid-cols-2 items-center shadow-xl relative">
+                class="rounded-[36px] overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white grid md:grid-cols-2 items-center shadow-2xl relative border border-emerald-500/20">
                 <div
-                    class="absolute -right-16 -top-16 w-64 h-64 border-4 border-emerald-500/10 rounded-full pointer-events-none">
-                </div>
-                <div
-                    class="absolute right-32 bottom-12 w-32 h-32 border border-emerald-500/5 rounded-full pointer-events-none">
+                    class="absolute -right-16 -top-16 w-64 h-64 border-4 border-teal-500/10 rounded-full pointer-events-none animate-pulse">
                 </div>
 
                 <div class="p-8 sm:p-12 lg:p-16 space-y-5 relative z-10">
-                    <span class="text-emerald-400 font-semibold uppercase tracking-wider text-xs">Seamless Vector
-                        Automation</span>
-                    <h2 class="text-3xl font-bold tracking-tight">Hyper-clean configurations designed to blend into any
-                        space.</h2>
-                    <p class="text-slate-300 font-light leading-relaxed text-sm">
+                    <span
+                        class="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent font-extrabold uppercase tracking-wider text-xs">Seamless
+                        Dynamic Diagnostics</span>
+                    <h2 class="text-3xl font-black tracking-tight leading-snug">Hyper-clean configurations designed to
+                        blend into any space.</h2>
+                    <p class="text-slate-300 font-normal leading-relaxed text-sm">
                         Our hydroponics arrays keep plants aligned in uniform vector tracks with automated hydration
                         pulses, yielding optimal clean organic crops directly inside your residential layout.
                     </p>
                 </div>
 
                 <div
-                    class="h-64 md:h-full min-h-[320px] flex items-center justify-center bg-slate-950/40 border-l border-white/5 relative p-8">
-                    <div class="w-full max-w-xs space-y-4">
+                    class="h-64 md:h-full min-h-[320px] flex items-center justify-center bg-slate-950/60 border-l border-white/5 relative p-8">
+                    <div class="w-full max-w-xs space-y-5">
                         <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs font-semibold text-emerald-400">
+                            <div class="flex justify-between text-xs font-bold text-emerald-400">
                                 <span>Automation Module Alpha Pulse</span>
                                 <span>Active</span>
                             </div>
                             <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-emerald-500 rounded-full w-4/5 animate-pulse"></div>
+                                <div
+                                    class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full w-4/5 animate-pulse">
+                                </div>
                             </div>
                         </div>
                         <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs font-semibold text-blue-400">
+                            <div class="flex justify-between text-xs font-bold text-cyan-400">
                                 <span>Hydration Nutrient Flow Rate</span>
                                 <span>98% Optimal</span>
                             </div>
                             <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-blue-500 rounded-full w-[94%] animate-pulse"
+                                <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full w-[94%] animate-pulse"
                                     style="animation-delay: 0.5s;"></div>
-                            </div>
-                        </div>
-                        <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs font-semibold text-purple-400">
-                                <span>Ambient Root Oxygen Level</span>
-                                <span>Max Capacity</span>
-                            </div>
-                            <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-purple-500 rounded-full w-full animate-pulse"
-                                    style="animation-delay: 1s;"></div>
                             </div>
                         </div>
                     </div>
@@ -363,46 +377,47 @@
         </div>
     </section>
 
-    <section class="py-24 bg-slate-50/40 reveal">
+    <section class="py-24 bg-gradient-to-b from-white to-slate-50/50 relative z-10 reveal">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold text-slate-900">Loved by home growers</h2>
-                <p class="text-slate-600 mt-2 text-sm">See what real beginners say about their Farmspherica journey.</p>
+                <h2 class="text-3xl font-black text-slate-900">Loved by home growers</h2>
+                <p class="text-slate-600 mt-2 text-sm font-medium">See what real beginners say about their Farmspherica
+                    journey.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between hover:border-emerald-100 transition duration-300">
-                    <p class="text-slate-600 italic text-sm leading-relaxed">
+                    class="bg-white p-8 rounded-3xl border border-emerald-100/50 shadow-sm flex flex-col justify-between hover:border-emerald-400 transition duration-300">
+                    <p class="text-slate-600 italic text-sm leading-relaxed font-medium">
                         "I used to kill every plant I bought. With Farmspherica, I literally just plugged it in, added
                         water, and had fresh lettuce for sandwiches in less than a month."
                     </p>
                     <div class="flex items-center gap-3 mt-6">
                         <div
-                            class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-xs">
+                            class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 text-white font-black flex items-center justify-center text-xs shadow-md">
                             SK
                         </div>
                         <div>
-                            <div class="font-bold text-slate-900 text-xs">Sarah K.</div>
-                            <div class="text-[11px] text-slate-500">First-time Grower</div>
+                            <div class="font-extrabold text-slate-900 text-xs">Sarah K.</div>
+                            <div class="text-[11px] text-slate-500 font-medium">First-time Grower</div>
                         </div>
                     </div>
                 </div>
 
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between hover:border-emerald-100 transition duration-300">
-                    <p class="text-slate-600 italic text-sm leading-relaxed">
+                    class="bg-white p-8 rounded-3xl border border-emerald-100/50 shadow-sm flex flex-col justify-between hover:border-teal-400 transition duration-300">
+                    <p class="text-slate-600 italic text-sm leading-relaxed font-medium">
                         "The amount of water it saves is incredible. I set it up on my kitchen countertop and it feels
                         amazing to harvest crisp greens without tracking dirt inside."
                     </p>
                     <div class="flex items-center gap-3 mt-6">
                         <div
-                            class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-xs">
+                            class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-teal-500 to-blue-500 text-white font-black flex items-center justify-center text-xs shadow-md">
                             MD
                         </div>
                         <div>
-                            <div class="font-bold text-slate-900 text-xs">Marcus D.</div>
-                            <div class="text-[11px] text-slate-500">Urban Apartment Resident</div>
+                            <div class="font-extrabold text-slate-900 text-xs">Marcus D.</div>
+                            <div class="text-[11px] text-slate-500 font-medium">Urban Apartment Resident</div>
                         </div>
                     </div>
                 </div>
@@ -410,43 +425,45 @@
         </div>
     </section>
 
-    <section id="cta-section" class="py-20 bg-emerald-50/40 reveal">
-        <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
-            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">Ready to start growing?</h2>
-            <p class="text-slate-600 max-w-xl mx-auto text-sm">
+    <section id="cta-section"
+        class="py-24 bg-gradient-to-tr from-emerald-950 via-slate-900 to-teal-950 text-white relative z-10 overflow-hidden text-center reveal">
+        <div class="max-w-4xl mx-auto px-6 space-y-6 relative z-10">
+            <h2 class="text-3xl sm:text-4xl font-black tracking-tight">Ready to start growing?</h2>
+            <p class="text-emerald-200/80 max-w-xl mx-auto text-sm font-medium">
                 Get your complete soil-free smart Farmspherica kit shipped straight to your door. Fresh food loops are
                 just a click away.
             </p>
             <div class="pt-4">
-                <button onclick="alert('Thank you for initiating your Farmspherica configuration!')"
-                    class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 py-4 rounded-xl shadow-xl shadow-emerald-600/20 transition hover:scale-105 duration-300 text-sm">
+                <button onclick="alert('Configuration pipeline assigned successfully!')"
+                    class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-10 py-4 rounded-xl shadow-xl shadow-emerald-500/20 transition-all duration-300 hover:scale-105 text-sm">
                     Get Your Kit Today
                 </button>
             </div>
         </div>
     </section>
 
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900 relative z-10">
         <div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 md:grid-cols-12 gap-8 items-start">
             <div class="md:col-span-6 space-y-4">
                 <div class="flex items-center gap-2 text-white">
-                    <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+                    <div
+                        class="w-8 h-8 bg-gradient-to-tr from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
                         <i class="fa-solid fa-seedling text-white text-xs"></i>
                     </div>
-                    <span class="text-base font-bold">Farmspherica</span>
+                    <span class="text-base font-black">Farmspherica</span>
                 </div>
-                <p class="text-xs max-w-sm text-slate-400 leading-relaxed">
+                <p class="text-xs max-w-sm text-slate-400 leading-relaxed font-medium">
                     Bringing the geometric precision and automated environmental loops of commercial hydroponics
                     straight inside every home kitchen.
                 </p>
             </div>
 
             <div class="md:col-span-6 md:text-right space-y-3">
-                <h4 class="text-xs font-semibold text-white uppercase tracking-wider">Contact Us</h4>
-                <div class="text-xs space-y-1">
-                    <p><i class="fa-solid fa-envelope mr-2 text-emerald-500"></i> support@farmspherica.com</p>
-                    <p><i class="fa-solid fa-phone mr-2 text-emerald-500"></i> +1 (800) 555-GROW</p>
-                    <p class="text-[11px] text-slate-500 pt-4">&copy; 2026 Farmspherica Systems Inc. All rights
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider">Contact Us</h4>
+                <div class="text-xs space-y-1 font-medium">
+                    <p><i class="fa-solid fa-envelope mr-2 text-emerald-400"></i> support@farmspherica.com</p>
+                    <p><i class="fa-solid fa-phone mr-2 text-emerald-400"></i> +1 (800) 555-GROW</p>
+                    <p class="text-[11px] text-slate-600 pt-4">&copy; 2026 Farmspherica Systems Inc. All rights
                         reserved.</p>
                 </div>
             </div>

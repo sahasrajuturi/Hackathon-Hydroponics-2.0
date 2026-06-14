@@ -1,88 +1,86 @@
 /* ==========================================================================
-   Farmspherica Core Styles & Custom Transitions
+   Farmspherica Pro Custom Visual Architecture Stylesheet
    ========================================================================== */
 
-body {
-    background-color: #fbfcfa;
+html {
+    scroll-behavior: smooth;
 }
 
-/* -------------------------------------------------------------------------- */
-/* PURE CSS 3D STRUCTURAL ANIMATIONS                                          */
-/* -------------------------------------------------------------------------- */
-
-/* Perspective viewport container */
+/* 3D Dynamic Depth Layer Workspace Viewports */
 .scene-3d {
-    perspective: 1400px;
+    perspective: 1600px;
     perspective-origin: 50% 50%;
 }
 
-/* 3D Structural Card Alignment */
+/* Hero Main 3D Card Rig Placement Matrix */
 .card-3d {
     transform-style: preserve-3d;
-    transform: rotateX(12deg) rotateY(-12deg) rotateZ(2deg);
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease;
+    transform: rotateX(10deg) rotateY(-10deg) rotateZ(1deg);
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1), box-shadow 0.6s ease;
 }
 
-.card-3d:hover {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(-10px);
-    box-shadow: 0 30px 60px rgba(16, 185, 129, 0.18);
+/* Separate specific hover matrices for structured grid benefit components */
+.card-3d-benefit {
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1), border-color 0.4s, box-shadow 0.4s;
 }
 
-/* Isometric Grow Tube Grid Rig */
+.card-3d-benefit:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* Isometric Visual System Structure */
 .grid-3d-system {
-    transform: rotateX(55deg) rotateZ(-35deg);
+    transform: rotateX(52deg) rotateZ(-28deg);
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .grid-3d-system:hover {
-    transform: rotateX(48deg) rotateZ(-28deg) scale(1.03);
+    transform: rotateX(46deg) rotateZ(-22deg) scale(1.02);
 }
 
-/* Individual Interactive Grow-Tube Extrusions */
 .grow-tube {
     transform-style: preserve-3d;
     transform: translateZ(0px);
-    transition: transform 0.4s ease, background-color 0.4s;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1);
 }
 
 .grow-tube:hover {
-    transform: translateZ(25px);
-    background-color: #f0fdf4;
+    transform: translateZ(20px);
 }
 
-/* Layered Plant Base Depth Layouts */
+/* Micro-depth Z Axis Stagger Definitions */
 .plant-layer-1 {
     transform: translateZ(15px);
 }
 
 .plant-layer-2 {
-    transform: translateZ(35px) scale(1.1);
-    animation: floatLeaves 3s ease-in-out infinite alternate;
+    transform: translateZ(32px);
 }
 
 .plant-layer-3 {
-    transform: translateZ(50px);
+    transform: translateZ(48px);
 }
 
-@keyframes floatLeaves {
-    0% {
-        transform: translateZ(35px) scale(1.1) rotate(0deg);
-    }
-
-    100% {
-        transform: translateZ(38px) scale(1.12) rotate(3deg);
-    }
+/* Ambient Parallax Decorative Vector Orbs */
+.bg-orb {
+    position: absolute;
+    width: 35rem;
+    height: 35rem;
+    border-radius: 9999px;
+    filter: blur(80px);
+    will-change: transform;
+    mix-blend-mode: multiply;
 }
 
-/* Liquid Wave Simulation background */
+/* Animated Flow Ambient Gradient Background layer ribbon */
 .water-fluid-wave {
-    background: linear-gradient(-45deg, #3b82f6, #60a5fa, #059669, #34d399);
-    background-size: 400% 400%;
-    animation: waveGradient 8s ease infinite;
+    background: linear-gradient(-45deg, #2563eb, #0d9488, #059669, #3b82f6);
+    background-size: 300% 300%;
+    animation: gradientShiftFlow 7s ease infinite;
 }
 
-@keyframes waveGradient {
+@keyframes gradientShiftFlow {
     0% {
         background-position: 0% 50%;
     }
@@ -96,26 +94,87 @@ body {
     }
 }
 
-/* Dynamic Counter Badge Float */
-@keyframes floatBadge {
+/* NEW COMPONENT: Interactive 3D Fluid Liquid Tank Micro Simulation */
+.hydro-water-fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 55%;
+    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+    box-shadow: inset 0 4px 12px rgba(255, 255, 255, 0.2);
+    border-radius: 0 0 12px 12px;
+    animation: internalFluidWave 3s ease-in-out infinite alternate;
+}
+
+@keyframes internalFluidWave {
     0% {
-        transform: translateY(0px) translateZ(60px);
+        height: 52%;
+        transform: skewY(-2deg);
     }
 
     100% {
-        transform: translateY(-12px) translateZ(75px);
+        height: 57%;
+        transform: skewY(2deg);
+    }
+}
+
+/* Hydroponic Nutrient Injection Particle Bubbles */
+.nutrient-bubble {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(52, 211, 153, 0.6);
+    border-radius: 9999px;
+    bottom: 0;
+    opacity: 0;
+}
+
+.animate-bubble {
+    animation: bubbleUpwardCycle 2.5s infinite linear;
+}
+
+@keyframes bubbleUpwardCycle {
+    0% {
+        bottom: 0%;
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    30% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.4;
+    }
+
+    100% {
+        bottom: 65%;
+        opacity: 0;
+        transform: scale(1.4);
+    }
+}
+
+/* Idle Hover Height Oscillation matrix animation loops */
+@keyframes floatCounterBadge {
+    0% {
+        transform: translateY(0px) translateZ(50px);
+    }
+
+    100% {
+        transform: translateY(-10px) translateZ(65px);
     }
 }
 
 .floating-badge-3d {
-    animation: floatBadge 3.5s ease-in-out infinite alternate;
+    animation: floatCounterBadge 3s ease-in-out infinite alternate;
 }
 
-/* Scroll Animation Entry Transitions */
+/* Entry Scroll Animation Reveal Framework States */
 .reveal {
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(35px);
+    transition: opacity 0.8s cubic-bezier(0.2, 1, 0.2, 1), transform 0.8s cubic-bezier(0.2, 1, 0.2, 1);
 }
 
 .reveal.active {
