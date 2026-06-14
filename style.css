@@ -1,79 +1,173 @@
 /* ==========================================================================
-   Farmspherica Pro Custom Visual Architecture Stylesheet
+   Farmspherica Performance-Optimized Core Style Layer Architecture
    ========================================================================== */
 
-html {
-    scroll-behavior: smooth;
+/* Hardware Accelerated Viewport Layer Initialization */
+.perspective-container {
+    perspective: 1000px;
 }
 
-/* 3D Dynamic Depth Layer Workspace Viewports */
-.scene-3d {
-    perspective: 1600px;
-    perspective-origin: 50% 50%;
-}
-
-/* Hero Main 3D Card Rig Placement Matrix */
-.card-3d {
-    transform-style: preserve-3d;
-    transform: rotateX(10deg) rotateY(-10deg) rotateZ(1deg);
-    transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1), box-shadow 0.6s ease;
-}
-
-/* Separate specific hover matrices for structured grid benefit components */
-.card-3d-benefit {
-    transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1), border-color 0.4s, box-shadow 0.4s;
-}
-
-.card-3d-benefit:hover {
-    transform: translateY(-8px) scale(1.02);
-}
-
-/* Isometric Visual System Structure */
-.grid-3d-system {
-    transform: rotateX(52deg) rotateZ(-28deg);
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.grid-3d-system:hover {
-    transform: rotateX(46deg) rotateZ(-22deg) scale(1.02);
-}
-
-.grow-tube {
-    transform-style: preserve-3d;
-    transform: translateZ(0px);
-    transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1);
-}
-
-.grow-tube:hover {
-    transform: translateZ(20px);
-}
-
-/* Micro-depth Z Axis Stagger Definitions */
-.plant-layer-1 {
-    transform: translateZ(15px);
-}
-
-.plant-layer-2 {
-    transform: translateZ(32px);
-}
-
-.plant-layer-3 {
-    transform: translateZ(48px);
-}
-
-/* Ambient Parallax Decorative Vector Orbs */
-.bg-orb {
-    position: absolute;
-    width: 35rem;
-    height: 35rem;
-    border-radius: 9999px;
-    filter: blur(80px);
+/* Card Rig: Uses regular CSS keyframes for 100% glitch-free performance */
+.hero-showcase-card {
     will-change: transform;
-    mix-blend-mode: multiply;
+    animation: staticCardRotate 8s ease-in-out infinite alternate;
 }
 
-/* Animated Flow Ambient Gradient Background layer ribbon */
+@keyframes staticCardRotate {
+    0% {
+        transform: rotateX(6deg) rotateY(-8deg) rotateZ(0.5deg);
+    }
+
+    100% {
+        transform: rotateX(8deg) rotateY(-5deg) rotateZ(-0.5deg);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* PURE CSS 3-D HYDROPONIC PLANT MODEL STYLING                                */
+/* -------------------------------------------------------------------------- */
+
+.plant-container-3d {
+    transform-style: preserve-3d;
+}
+
+/* Glass Pod Base Tank */
+.pod-base-3d {
+    position: absolute;
+    width: 110px;
+    height: 90px;
+    border: 3px solid rgba(16, 185, 129, 0.4);
+    border-top: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 24px 24px 40px 40px;
+    background: rgba(244, 253, 248, 0.5);
+    backdrop-filter: blur(4px);
+    bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(4, 120, 87, 0.08), inset 0 0 15px rgba(16, 185, 129, 0.1);
+}
+
+/* Pod Water Level Core */
+.pod-water-level {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(180deg, rgba(14, 165, 233, 0.4) 0%, rgba(3, 105, 161, 0.5) 100%);
+    border-top: 2px solid rgba(56, 189, 248, 0.6);
+    animation: podFluidMotion 4s ease-in-out infinite alternate;
+}
+
+@keyframes podFluidMotion {
+    0% {
+        transform: scaleY(1) skewY(-2deg);
+    }
+
+    100% {
+        transform: scaleY(1.05) skewY(2deg);
+    }
+}
+
+/* Layered Vector Root Architecture filaments */
+.root-strand {
+    position: absolute;
+    background: linear-gradient(180deg, #6ee7b7, rgba(255, 255, 255, 0.4));
+    width: 3px;
+    border-radius: 999px;
+    transform-origin: top center;
+}
+
+.root-1 {
+    height: 45px;
+    left: 40%;
+    transform: rotate(15deg);
+    animation: rootSway 4s ease-in-out infinite alternate;
+}
+
+.root-2 {
+    height: 55px;
+    left: 52%;
+    transform: rotate(-5deg);
+    animation: rootSway 3s ease-in-out infinite alternate-reverse;
+}
+
+.root-3 {
+    height: 38px;
+    left: 65%;
+    transform: rotate(-20deg);
+    animation: rootSway 5s ease-in-out infinite alternate;
+}
+
+@keyframes rootSway {
+    0% {
+        transform: rotate(-8deg) scaleY(0.95);
+    }
+
+    100% {
+        transform: rotate(8deg) scaleY(1.05);
+    }
+}
+
+/* Structural Stem Elements */
+.plant-main-stem {
+    position: absolute;
+    bottom: 96px;
+    width: 6px;
+    height: 85px;
+    background: linear-gradient(0deg, #059669 0%, #34d399 100%);
+    border-radius: 999px;
+    animation: stemGlowOscillation 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes stemGlowOscillation {
+    0% {
+        transform: rotate(-2deg);
+    }
+
+    100% {
+        transform: rotate(2deg);
+    }
+}
+
+/* Individual 3D Structured Leaf Meshes */
+.3d-leaf {
+    position: absolute;
+    background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+    border-radius: 0 100px 0 100px;
+    box-shadow: 0 4px 10px rgba(4, 120, 87, 0.15);
+    transform-origin: bottom left;
+}
+
+.leaf-left-1 {
+    width: 45px;
+    height: 25px;
+    left: -40px;
+    top: 35px;
+    transform: rotate(-25deg);
+}
+
+.leaf-right-1 {
+    width: 42px;
+    height: 24px;
+    right: -39px;
+    top: 15px;
+    border-radius: 100px 0 100px 0;
+    transform-origin: bottom right;
+    transform: rotate(25deg);
+}
+
+.leaf-top {
+    width: 30px;
+    height: 30px;
+    top: -25px;
+    left: -12px;
+    border-radius: 50% 50% 0 50%;
+    transform: rotate(45deg);
+}
+
+/* -------------------------------------------------------------------------- */
+/* COMPONENT STYLES                                                           */
+/* -------------------------------------------------------------------------- */
+
 .water-fluid-wave {
     background: linear-gradient(-45deg, #2563eb, #0d9488, #059669, #3b82f6);
     background-size: 300% 300%;
@@ -94,90 +188,80 @@ html {
     }
 }
 
-/* NEW COMPONENT: Interactive 3D Fluid Liquid Tank Micro Simulation */
 .hydro-water-fill {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 55%;
     background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
-    box-shadow: inset 0 4px 12px rgba(255, 255, 255, 0.2);
-    border-radius: 0 0 12px 12px;
     animation: internalFluidWave 3s ease-in-out infinite alternate;
 }
 
 @keyframes internalFluidWave {
     0% {
-        height: 52%;
-        transform: skewY(-2deg);
+        height: 50%;
+        transform: skewY(-1deg);
     }
 
     100% {
-        height: 57%;
-        transform: skewY(2deg);
+        height: 55%;
+        transform: skewY(1deg);
     }
 }
 
-/* Hydroponic Nutrient Injection Particle Bubbles */
 .nutrient-bubble {
     position: absolute;
-    width: 6px;
-    height: 6px;
-    background-color: rgba(52, 211, 153, 0.6);
-    border-radius: 9999px;
+    width: 5px;
+    height: 5px;
+    background-color: rgba(52, 211, 153, 0.5);
+    border-radius: 999px;
     bottom: 0;
     opacity: 0;
-}
-
-.animate-bubble {
-    animation: bubbleUpwardCycle 2.5s infinite linear;
+    animation: bubbleUpwardCycle 2s infinite linear;
 }
 
 @keyframes bubbleUpwardCycle {
     0% {
         bottom: 0%;
         opacity: 0;
-        transform: scale(0.8);
     }
 
     30% {
-        opacity: 0.8;
-    }
-
-    90% {
-        opacity: 0.4;
+        opacity: 0.7;
     }
 
     100% {
-        bottom: 65%;
+        bottom: 70%;
         opacity: 0;
-        transform: scale(1.4);
     }
 }
 
-/* Idle Hover Height Oscillation matrix animation loops */
-@keyframes floatCounterBadge {
+.badge-3d-floating {
+    animation: smoothBadgeFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes smoothBadgeFloat {
     0% {
-        transform: translateY(0px) translateZ(50px);
+        transform: translateY(0px);
     }
 
     100% {
-        transform: translateY(-10px) translateZ(65px);
+        transform: translateY(-8px);
     }
 }
 
-.floating-badge-3d {
-    animation: floatCounterBadge 3s ease-in-out infinite alternate;
-}
-
-/* Entry Scroll Animation Reveal Framework States */
+/* Optimized Scroll Animation Revelations */
 .reveal {
     opacity: 0;
-    transform: translateY(35px);
-    transition: opacity 0.8s cubic-bezier(0.2, 1, 0.2, 1), transform 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+.animate-pulse-slow {
+    animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
