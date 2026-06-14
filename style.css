@@ -1,112 +1,113 @@
 /* ==========================================================================
-   Farmspherica Pro Performance-Optimized Core Spatial Stylesheet
+   Farmspherica Core Hardware-Accelerated Layout Engine
    ========================================================================== */
 
-/* Initialize lightweight body perspective */
-.perspective-global-body {
+.scene-3d-viewport {
     perspective: 1200px;
 }
 
-.scene-3d-viewport {
-    perspective: 1000px;
-}
-
-/* -------------------------------------------------------------------------- */
-/* HIGH-PERFORMANCE GPU CSS KEYFRAME ANIMATIONS (GLITCH REMOVAL)             */
-/* -------------------------------------------------------------------------- */
-
-/* Showcase Matrix Block: 100% hardware accelerated spatial rotations */
-.spatial-card-mesh {
+/* Outer Showroom Matrix: Employs 100% GPU-driven keyframes instead of scroll event listeners */
+.spatial-showcase-card {
     will-change: transform;
     transform-style: preserve-3d;
-    animation: constantFluidRotation 9s ease-in-out infinite alternate;
+    animation: constantSmoothRotation 10s ease-in-out infinite alternate;
 }
 
-@keyframes constantFluidRotation {
+@keyframes constantSmoothRotation {
     0% {
-        transform: rotateX(8deg) rotateY(-10deg) rotateZ(0.5deg);
+        transform: rotateX(7deg) rotateY(-9deg) rotateZ(0.5deg);
     }
 
     100% {
-        transform: rotateX(11deg) rotateY(-6deg) rotateZ(-0.5deg);
+        transform: rotateX(10deg) rotateY(-5deg) rotateZ(-0.5deg);
     }
 }
 
-/* Spatial Isometric Content Containers */
-.isometric-layer-mesh {
-    transform: rotateX(50deg) rotateZ(-25deg);
+/* -------------------------------------------------------------------------- */
+/* ADVANCED CORE ARRAY & CIRCULATION MESH SYSTEMS                              */
+/* -------------------------------------------------------------------------- */
+
+.core-system-3d {
     transform-style: preserve-3d;
 }
 
-/* -------------------------------------------------------------------------- */
-/* 3-D VECTOR BACKGROUND EFFECTS                                              */
-/* -------------------------------------------------------------------------- */
-
-/* Abstract Perspective Vector Structural Grid */
-.bg-spatial-grid {
-    background-image:
-        linear-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-    transform: rotateX(60deg) scale(1.8) translateY(-10%);
-    transform-origin: top center;
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 90%);
-}
-
-/* Ambient Slow Atmospheric Color Vector Floating Orbs */
-.animate-float-orb-slow {
-    animation: ambientOrbMovement 20s ease-in-out infinite alternate;
-    will-change: transform;
-}
-
-@keyframes ambientOrbMovement {
+/* Linear Holo-Scanner Beam effect inside core pod box */
+@keyframes scan {
     0% {
-        transform: translateY(0px) scale(1);
-        opacity: 0.8;
+        transform: translateY(-100%);
     }
 
     50% {
-        transform: translateY(-40px) scale(1.08);
-        opacity: 1;
+        transform: translateY(100%);
     }
 
     100% {
-        transform: translateY(20px) scale(0.95);
-        opacity: 0.7;
+        transform: translateY(-100%);
     }
 }
 
-/* Micro Ambient Components Float Loops */
-.animate-float-micro {
-    animation: dynamicMicroFloat 4s ease-in-out infinite alternate;
+.animate-scan {
+    animation: scan 4s linear infinite;
 }
 
-@keyframes dynamicMicroFloat {
+/* UPGRADED: 3D Circulation Matrix Layer Array Mesh */
+.circulation-matrix-mesh {
+    transform: rotateX(50deg) rotateZ(-24deg);
+    transform-style: preserve-3d;
+    will-change: transform;
+    animation: smoothMatrixSway 6s ease-in-out infinite alternate;
+}
+
+@keyframes smoothMatrixSway {
     0% {
-        transform: translateY(0px) rotate(-12deg);
+        transform: rotateX(47deg) rotateZ(-26deg) translateY(0px);
     }
 
     100% {
-        transform: translateY(-15px) rotate(-5deg);
+        transform: rotateX(52deg) rotateZ(-22deg) translateY(-8px);
     }
-}
-
-/* Text Layer Spatial Pop Highlight */
-.spatial-text-pop {
-    text-shadow: 0 10px 30px rgba(4, 120, 87, 0.04);
 }
 
 /* -------------------------------------------------------------------------- */
-/* DIAGNOSTIC GRAPHIC WIDGET MODULE STYLES                                    */
+/* GLOBAL SPATIAL VECTOR BACKGROUND FX GRID                                   */
+/* -------------------------------------------------------------------------- */
+
+.bg-spatial-grid {
+    background-image:
+        linear-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: rotateX(65deg) scale(2) translateY(-5%);
+    transform-origin: top center;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 85%);
+}
+
+.animate-float-orb {
+    animation: constantOrbFloat 18s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes constantOrbFloat {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+
+    100% {
+        transform: translateY(-30px) scale(1.05);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* INTERACTIVE LIQUID RESIDUE WIDGET SYSTEM                                   */
 /* -------------------------------------------------------------------------- */
 
 .water-fluid-wave {
     background: linear-gradient(-45deg, #2563eb, #0d9488, #059669, #3b82f6);
     background-size: 300% 300%;
-    animation: gradientShiftFlow 8s ease infinite;
+    animation: waveFlowMotion 8s ease infinite;
 }
 
-@keyframes gradientShiftFlow {
+@keyframes waveFlowMotion {
     0% {
         background-position: 0% 50%;
     }
@@ -132,12 +133,12 @@
 @keyframes internalFluidWave {
     0% {
         height: 50%;
-        transform: skewY(-1.5deg);
+        transform: skewY(-1deg);
     }
 
     100% {
         height: 56%;
-        transform: skewY(1.5deg);
+        transform: skewY(1deg);
     }
 }
 
@@ -149,10 +150,10 @@
     border-radius: 999px;
     bottom: 0;
     opacity: 0;
-    animation: bubbleUpwardCycle 2.2s infinite linear;
+    animation: bubbleCycle 2.2s infinite linear;
 }
 
-@keyframes bubbleUpwardCycle {
+@keyframes bubbleCycle {
     0% {
         bottom: 0%;
         opacity: 0;
@@ -169,20 +170,20 @@
 }
 
 .diagnostic-badge-3d {
-    animation: smoothBadgeFloat 3.5s ease-in-out infinite alternate;
+    animation: smoothBadgeFloat 4s ease-in-out infinite alternate;
 }
 
 @keyframes smoothBadgeFloat {
     0% {
-        transform: translateY(0px) translateZ(30px);
+        transform: translateY(0px) translateZ(40px);
     }
 
     100% {
-        transform: translateY(-10px) translateZ(45px);
+        transform: translateY(-8px) translateZ(55px);
     }
 }
 
-/* Optimized CSS Transition Scroll Triggers */
+/* Scroll Trigger Layout Visibility Foundations */
 .reveal {
     opacity: 0;
     transform: translateY(20px);

@@ -1,5 +1,5 @@
 /**
- * Farmspherica Engine - High Performance Asynchronous Layout Script
+ * Farmspherica Engine - High Performance Layout Execution Engine
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * 1. IntersectionObserver API for Ultra-Smooth Scroll Triggering
- * Bypasses traditional scroll-event layout thrashing entirely.
+ * 1. IntersectionObserver API for Stutter-Free Element Introductions
+ * Replaces old window scroll handlers to entirely prevent performance layout thrashing.
  */
 function initScrollReveal() {
     const reveals = document.querySelectorAll(".reveal");
@@ -24,7 +24,7 @@ function initScrollReveal() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("active");
-                observer.unobserve(entry.target); // Execution ends immediately to conserve processor overhead
+                observer.unobserve(entry.target); // Kill process execution on targeted item immediately
             }
         });
     }, observerOptions);
@@ -33,7 +33,7 @@ function initScrollReveal() {
 }
 
 /**
- * 2. Optimized Metric Value Diagnostics Counter
+ * 2. Asynchronous Precision Counter Animation Loop
  */
 function animateWaterValue() {
     const el = document.getElementById('live-water-counter');
