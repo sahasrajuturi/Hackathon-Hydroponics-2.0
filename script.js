@@ -4,98 +4,74 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
-    initWaterCounter();
-    initDynamic3DTilt();
+    animateWaterValue();
+    initDynamic3DEffect();
 });
 
 /**
  * 1. Scroll-Driven Reveal System
- * Fades and slides elements into view dynamically as the user scrolls.
+ * Elements smoothly animate upwards into position as the user scrolls.
  */
 function initScrollReveal() {
-    const reveals = document.querySelectorAll('.reveal');
+    const reveals = document.querySelectorAll(".reveal");
 
-    const revealOnScroll = () => {
+    const revealCheck = () => {
         const windowHeight = window.innerHeight;
-        const revealPoint = 100; // Pixels from bottom when animation triggers
-
-        reveals.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-
-            if (elementTop < windowHeight - revealPoint) {
-                element.classList.add('active');
+        reveals.forEach(rev => {
+            const elementTop = rev.getBoundingClientRect().top;
+            if (elementTop < windowHeight - 100) {
+                rev.classList.add("active");
             }
         });
     };
 
-    // Run once on load to catch elements already in viewport
-    revealOnScroll();
-    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener("scroll", revealCheck);
+    // Initial call to reveal elements already inside the viewport on load
+    revealCheck();
 }
 
 /**
  * 2. Animated Numerical Counter
- * Smoothly counts up to the target metric when the page finishes loading.
+ * Counts smoothly from 0% up to 90% inside the floating water savings badge.
  */
-function initWaterCounter() {
-    const counterElement = document.getElementById('water-counter');
-    if (!counterElement) return;
+function animateWaterValue() {
+    const el = document.getElementById('live-water-counter');
+    if (!el) return;
 
-    const targetValue = 90;
-    const duration = 2000; // Total animation speed in milliseconds
-    const startTime = performance.now();
+    let current = 0;
+    const target = 90;
+    const duration = 1800; // Total duration in milliseconds
+    const stepTime = Math.abs(Math.floor(duration / target));
 
-    const animateCount = (currentTime) => {
-        const elapsedTime = currentTime - startTime;
-        const progress = Math.min(elapsedTime / duration, 1);
-
-        // Easing function for a smooth slow-down finish
-        const easeOutQuad = progress * (2 - progress);
-        const currentValue = Math.floor(easeOutQuad * targetValue);
-
-        counterElement.textContent = `${currentValue}%`;
-
-        if (progress < 1) {
-            requestAnimationFrame(animateCount);
+    const timer = setInterval(() => {
+        current++;
+        el.textContent = current + "%";
+        if (current == target) {
+            clearInterval(timer);
         }
-    };
-
-    // Stagger slightly for a premium, intentional feel
-    setTimeout(() => {
-        requestAnimationFrame(animateCount);
-    }, 400);
+    }, stepTime);
 }
 
 /**
- * 3. Dynamic 3D Card Tilt Interaction
- * Tracks mouse movement across desktop screens to physically tip images 
- * toward the user's cursor for genuine depth. Completely bypasses mobile devices.
+ * 3. Mouse-Tracking 3D Tilt Effect
+ * Tracks the mouse pointer across the desktop screen to dynamically tilt
+ * the geometric card towards the user's cursor. (Bypasses touch screens).
  */
-function initDynamic3DTilt() {
-    // Disable heavy matrix calculations on mobile or touch devices
+function initDynamic3DEffect() {
+    // Gracefully exit if running on a touchscreen device to prevent conflict
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
-    const cards = document.querySelectorAll('.float-element');
+    const card = document.querySelector('.card-3d');
+    if (!card) return;
 
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x coordinate inside the element
-            const y = e.clientY - rect.top;  // y coordinate inside the element
+    document.addEventListener('mousemove', (e) => {
+        const halfW = window.innerWidth / 2;
+        const halfH = window.innerHeight / 2;
 
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
+        // Scale down tilting angle thresholds (higher multiplier = deeper tilt)
+        const rotateX = ((halfH - e.clientY) / halfH) * 14;
+        const rotateY = ((e.clientX - halfW) / halfW) * 14;
 
-            // Calculate rotational intensity (lower values = subtle tilt)
-            const rotateX = ((centerY - y) / centerY) * 8;
-            const rotateY = ((x - centerX) / centerX) * 8;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            // Smoothly snap back to default architectural resting angle
-            card.style.transform = 'perspective(1000px) rotateX(4deg) rotateY(-4deg)';
-        });
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
     });
 }

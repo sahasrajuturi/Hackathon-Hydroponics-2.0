@@ -2,92 +2,123 @@
    Farmspherica Core Styles & Custom Transitions
    ========================================================================== */
 
-/* Base configuration & Smooth scrolling */
-html {
-    scroll-behavior: smooth;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #fcfdfc;
-    color: #334155;
-    /* Slate 700 */
+body {
+    background-color: #fbfcfa;
 }
 
-/* Green and White Theme Utilities */
-.theme-bg-gradient {
-    background: linear-gradient(180deg, rgba(209, 250, 229, 0.5) 0%, rgba(255, 255, 255, 1) 100%);
+/* -------------------------------------------------------------------------- */
+/* PURE CSS 3D STRUCTURAL ANIMATIONS                                          */
+/* -------------------------------------------------------------------------- */
+
+/* Perspective viewport container */
+.scene-3d {
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
 }
 
-.text-emerald-primary {
-    color: #059669;
+/* 3D Structural Card Alignment */
+.card-3d {
+    transform-style: preserve-3d;
+    transform: rotateX(12deg) rotateY(-12deg) rotateZ(2deg);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease;
 }
 
-.bg-emerald-primary {
-    background-color: #059669;
+.card-3d:hover {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(-10px);
+    box-shadow: 0 30px 60px rgba(16, 185, 129, 0.18);
 }
 
-.bg-emerald-primary:hover {
-    background-color: #047857;
+/* Isometric Grow Tube Grid Rig */
+.grid-3d-system {
+    transform: rotateX(55deg) rotateZ(-35deg);
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ==========================================================================
-   Subtle 3D Layered Animations
-   ========================================================================== */
-
-/* Perspective container for the 3D element effect */
-.float-element {
-    transform: perspective(1000px) rotateX(4deg) rotateY(-4deg);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+.grid-3d-system:hover {
+    transform: rotateX(48deg) rotateZ(-28deg) scale(1.03);
 }
 
-/* Flatten out and lift slightly on mouse hover */
-.float-element:hover {
-    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-8px);
-    box-shadow: 0 20px 40px rgba(5, 150, 105, 0.15);
+/* Individual Interactive Grow-Tube Extrusions */
+.grow-tube {
+    transform-style: preserve-3d;
+    transform: translateZ(0px);
+    transition: transform 0.4s ease, background-color 0.4s;
 }
 
-/* Automatic idle vertical floating animation for the water counter badge */
-@keyframes continuousFloat {
+.grow-tube:hover {
+    transform: translateZ(25px);
+    background-color: #f0fdf4;
+}
 
-    0%,
+/* Layered Plant Base Depth Layouts */
+.plant-layer-1 {
+    transform: translateZ(15px);
+}
+
+.plant-layer-2 {
+    transform: translateZ(35px) scale(1.1);
+    animation: floatLeaves 3s ease-in-out infinite alternate;
+}
+
+.plant-layer-3 {
+    transform: translateZ(50px);
+}
+
+@keyframes floatLeaves {
+    0% {
+        transform: translateZ(35px) scale(1.1) rotate(0deg);
+    }
+
     100% {
-        transform: translateY(0px) rotate(0deg);
+        transform: translateZ(38px) scale(1.12) rotate(3deg);
+    }
+}
+
+/* Liquid Wave Simulation background */
+.water-fluid-wave {
+    background: linear-gradient(-45deg, #3b82f6, #60a5fa, #059669, #34d399);
+    background-size: 400% 400%;
+    animation: waveGradient 8s ease infinite;
+}
+
+@keyframes waveGradient {
+    0% {
+        background-position: 0% 50%;
     }
 
     50% {
-        transform: translateY(-10px) rotate(1deg);
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
     }
 }
 
-.animate-float {
-    animation: continuousFloat 4s ease-in-out infinite;
+/* Dynamic Counter Badge Float */
+@keyframes floatBadge {
+    0% {
+        transform: translateY(0px) translateZ(60px);
+    }
+
+    100% {
+        transform: translateY(-12px) translateZ(75px);
+    }
 }
 
-/* ==========================================================================
-   Scroll-Driven Reveal System (Fade-in on scroll)
-   ========================================================================== */
+.floating-badge-3d {
+    animation: floatBadge 3.5s ease-in-out infinite alternate;
+}
+
+/* Scroll Animation Entry Transitions */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(40px);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* ==========================================================================
-   Responsive Components Adjustments (Fallback & Utility overrides)
-   ========================================================================== */
-@media (max-width: 768px) {
-
-    /* Ensure 3D items rest evenly on smaller mobile screens */
-    .float-element {
-        transform: none;
-    }
-
-    .float-element:hover {
-        transform: translateY(-4px);
-    }
 }
