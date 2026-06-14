@@ -3,31 +3,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const categories = document.querySelectorAll('.faq-category');
     const noResults = document.getElementById('noResults');
+    const tiltCards = document.querySelectorAll('.tilt-card');
 
-    // --- Accordion Toggle Functionality ---
+    // --- Smooth Accordion Mechanics ---
     accordionHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const currentItem = header.parentElement;
             const content = currentItem.querySelector('.accordion-content');
             const isActive = currentItem.classList.contains('active');
 
-            // Close matching category items for cleaner UI
+            // Isolate closures to target individual category sections
             const siblingItems = currentItem.parentElement.querySelectorAll('.accordion-item');
             siblingItems.forEach(item => {
                 item.classList.remove('active');
                 item.querySelector('.accordion-content').style.maxHeight = null;
             });
 
-            // Open if it wasn't already active
             if (!isActive) {
                 currentItem.classList.add('active');
-                // Dynamically computes precise pixel height for stutter-free animations
+                // Hardware accelerated programmatic rendering to eliminate layout stutters
                 content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     });
 
-    // --- Live Searching / Filtering Mechanism ---
+    // --- High-Performance Live Text Filter Matrix ---
     searchInput.addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase().trim();
         let totalVisibleQuestions = 0;
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Dynamically hide category titles if all contents are filtered out
+            // Cleanly clear full categories if empty of matching query results
             if (visibleInGroup === 0 && searchTerm !== "") {
                 category.classList.add('hidden');
             } else {
@@ -58,11 +58,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Toggle visibility of empty search statement 
         if (totalVisibleQuestions === 0 && searchTerm !== "") {
             noResults.classList.remove('hidden');
         } else {
             noResults.classList.add('hidden');
         }
     });
+
+    // --- Interactive Real-Time 3D Card Tilt Engine ---
+    // Only applies on non-touch desktop layouts to save battery and processor cycles on mobile devices
+    if (window.innerWidth > 950) {
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const cardRect = card.getBoundingClientRect();
+
+                // Track relative coordinate offsets inside element boundaries
+                const cardX = e.clientX - cardRect.left;
+                const cardY = e.clientY - cardRect.top;
+
+                // Map dimensional positions to coordinate degree ranges (-7.5 to +7.5)
+                const rotateY = ((cardX / cardRect.width) - 0.5) * 15;
+                const rotateX = (((cardY / cardRect.height) - 0.5) * -15);
+
+                // Smooth real-time update using inline matrix transformations
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                card.style.boxShadow = `0 15px 35px rgba(0, 0, 0, 0.08)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                // Reset card surfaces cleanly when cursor steps off
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+                card.style.boxShadow = `0 8px 32px rgba(0,0,0,0.03)`;
+            });
+        });
+    }
 });

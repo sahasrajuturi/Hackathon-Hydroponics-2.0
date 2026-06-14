@@ -1,17 +1,19 @@
-/* --- Base Styles & Variables --- */
+/* --- Core Styling & Multi-Color Variables --- */
 :root {
-    --bg-color: #f0f4f1;
-    --text-color: #23322a;
-    --primary-green: #1b4d3e;
+    --bg-color: #f2f7f4;
+    --text-color: #1e2d24;
+    --primary-green: #0f4c3a;
     --emerald: #10b981;
-    --mint: #e6f7f0;
-    --terracotta: #f07167;
-    --terracotta-light: #fdf0ed;
+    --mint: #eefdf7;
+    --terracotta: #e76f51;
+    --terracotta-light: #fff5f2;
     --sky-blue: #0284c7;
     --sky-light: #f0f9ff;
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --border-radius: 14px;
-    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --gold: #b45309;
+    --gold-light: #fefce8;
+    --card-bg: rgba(255, 255, 255, 0.88);
+    --border-radius: 16px;
+    --transition: transform 0.15s ease-out, box-shadow 0.3s ease, max-height 0.3s ease;
 }
 
 * {
@@ -24,13 +26,13 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    line-height: 1.6;
+    line-height: 1.65;
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
 }
 
-/* --- Optimized 3D Animated Background --- */
+/* --- True CSS 3D Layered Animation Rig --- */
 .bg-container {
     position: fixed;
     top: 0;
@@ -38,148 +40,195 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    perspective: 1200px;
+    perspective: 1400px;
     overflow: hidden;
 }
 
-.cube {
+.prism {
     position: absolute;
-    border-radius: 24px;
+    width: 120px;
+    height: 120px;
     transform-style: preserve-3d;
-    animation: rotate 25s infinite linear;
+    animation: rotate3D 30s infinite linear;
 }
 
-/* Multi-colored 3D structural elements with low opacities to avoid clutter */
-.cube-1 {
-    width: 140px;
-    height: 140px;
-    top: 12%;
-    left: 8%;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.06), rgba(2, 132, 199, 0.06));
-    border: 1px solid rgba(16, 185, 129, 0.15);
-    animation-duration: 22s;
+/* Constructing structural geometric faces manually with CSS */
+.side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(16, 185, 129, 0.18);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(16, 185, 129, 0.05));
+    backdrop-filter: blur(2px);
 }
 
-.cube-2 {
-    width: 240px;
-    height: 240px;
-    bottom: 8%;
-    right: 4%;
-    background: linear-gradient(135deg, rgba(240, 113, 103, 0.05), rgba(16, 185, 129, 0.05));
-    border: 1px solid rgba(240, 113, 103, 0.12);
-    animation-duration: 38s;
+.front {
+    transform: rotateY(0deg) translateZ(60px);
 }
 
-.cube-3 {
-    width: 110px;
-    height: 110px;
-    top: 55%;
-    left: 42%;
-    background: linear-gradient(135deg, rgba(2, 132, 199, 0.05), rgba(240, 113, 103, 0.05));
-    border: 1px solid rgba(2, 132, 199, 0.12);
+.back {
+    transform: rotateY(180deg) translateZ(60px);
+}
+
+.right {
+    transform: rotateY(90deg) translateZ(60px);
+}
+
+.left {
+    transform: rotateY(-90deg) translateZ(60px);
+}
+
+.top {
+    transform: rotateX(90deg) translateZ(60px);
+}
+
+.bottom {
+    transform: rotateX(-90deg) translateZ(60px);
+}
+
+/* Prism Custom Varied Positions and Color Tint Variations */
+.prism-1 {
+    top: 15%;
+    left: 5%;
+    animation-duration: 25s;
+}
+
+.prism-2 {
+    bottom: 12%;
+    right: 5%;
+    width: 180px;
+    height: 180px;
+    animation-duration: 45s;
+    animation-direction: reverse;
+}
+
+.prism-2 .side {
+    border-color: rgba(2, 132, 199, 0.15);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(2, 132, 199, 0.04));
+    transform: rotateY(0deg) translateZ(90px);
+    /* adjusted for scale */
+}
+
+.prism-3 {
+    top: 65%;
+    left: 38%;
+    width: 80px;
+    height: 80px;
     animation-duration: 18s;
 }
 
-.cube-4 {
-    width: 160px;
-    height: 160px;
-    top: -5%;
-    right: 25%;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.04), rgba(234, 179, 8, 0.04));
-    border: 1px solid rgba(16, 185, 129, 0.1);
-    animation-duration: 30s;
+.prism-3 .side {
+    border-color: rgba(231, 111, 81, 0.15);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(231, 111, 81, 0.04));
 }
 
-@keyframes rotate {
+@keyframes rotate3D {
     0% {
-        transform: rotateX(0deg) rotateY(0deg) translateZ(0px);
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(0px);
     }
 
     50% {
-        transform: rotateX(180deg) rotateY(90deg) translateZ(60px);
+        transform: rotateX(180deg) rotateY(180deg) rotateZ(90deg) translateZ(40px);
     }
 
     100% {
-        transform: rotateX(360deg) rotateY(360deg) translateZ(0px);
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translateZ(0px);
     }
 }
 
-/* --- Hero Section --- */
+/* --- Hero Layout Elements --- */
 .hero {
     text-align: center;
-    padding: 4rem 1rem 2.5rem 1rem;
-    max-width: 800px;
+    padding: 5rem 1.5rem 3rem 1.5rem;
+    max-width: 850px;
     margin: 0 auto;
+    transform-style: preserve-3d;
 }
 
 .hero h1 {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
     color: var(--primary-green);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     font-weight: 800;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
 }
 
 .hero p {
-    font-size: 1.15rem;
-    color: #4a5d52;
-    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: #44594c;
+    margin-bottom: 2.5rem;
 }
 
 .search-container input {
     width: 100%;
-    max-width: 520px;
-    padding: 1.1rem 1.6rem;
+    max-width: 560px;
+    padding: 1.2rem 1.8rem;
     border: 2px solid transparent;
     border-radius: 50px;
     background: white;
-    box-shadow: 0 10px 25px rgba(27, 77, 62, 0.06);
-    font-size: 1rem;
+    box-shadow: 0 12px 35px rgba(15, 76, 58, 0.08);
+    font-size: 1.05rem;
     outline: none;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .search-container input:focus {
     border-color: var(--emerald);
-    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 15px 40px rgba(16, 185, 129, 0.25);
+    transform: translateY(-2px);
 }
 
-/* --- Layout Structure --- */
+/* --- Responsive Two-Column Blueprint --- */
 .main-layout {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1.5rem 5rem 1.5rem;
+    padding: 0 1.5rem 6rem 1.5rem;
     display: grid;
-    grid-template-columns: 2.2fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 2.3fr 1fr;
+    gap: 3.5rem;
 }
 
-/* --- Cards Shared Styles --- */
+/* --- 3D Interactive Tilting Cards --- */
 .info-card {
     background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 2.5rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 2.8rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    margin-bottom: 2.5rem;
-    border-left: 6px solid transparent;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
+    margin-bottom: 3rem;
+    border-left: 8px solid transparent;
+    transition: box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.info-card p {
+    margin-bottom: 1rem;
+    color: #33443a;
+}
+
+.info-card .extra-info {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    color: #4c5e54;
 }
 
 .info-basic {
     border-left-color: var(--emerald);
-    background: linear-gradient(to right, #ffffff, var(--mint));
+    background: linear-gradient(145deg, #ffffff, var(--mint));
 }
 
 .info-effectiveness {
     border-left-color: var(--sky-blue);
-    background: linear-gradient(to right, #ffffff, var(--sky-light));
+    background: linear-gradient(145deg, #ffffff, var(--sky-light));
 }
 
 .info-card h2 {
-    margin-bottom: 1rem;
-    font-size: 1.6rem;
-    font-weight: 700;
+    margin-bottom: 1.25rem;
+    font-size: 1.8rem;
+    font-weight: 800;
+    transform: translateZ(20px);
+    /* 3D layer pop out */
 }
 
 .info-basic h2 {
@@ -190,39 +239,42 @@ body {
     color: var(--sky-blue);
 }
 
-/* --- Effectiveness Elements --- */
+/* --- Stats and Comparison Data Arrays --- */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.25rem;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin: 2.2rem 0;
+    transform: translateZ(15px);
 }
 
 .stat-box {
     background: white;
-    padding: 1.25rem;
-    border-radius: 10px;
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.05);
-    border: 1px solid rgba(2, 132, 199, 0.1);
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.04);
+    border: 1px solid rgba(2, 132, 199, 0.08);
 }
 
 .stat-number {
     display: block;
-    font-size: 1.8rem;
-    font-weight: 800;
+    font-size: 2.1rem;
+    font-weight: 900;
     color: var(--sky-blue);
 }
 
 .stat-label {
     font-size: 0.85rem;
-    font-weight: 600;
-    color: #556b60;
+    font-weight: 700;
+    color: #506357;
 }
 
 .table-container {
     overflow-x: auto;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .comparison-table {
@@ -231,42 +283,37 @@ body {
     text-align: left;
     font-size: 0.95rem;
     background: white;
-    border-radius: 8px;
-    overflow: hidden;
 }
 
 .comparison-table th,
 .comparison-table td {
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid #eef2f0;
+    padding: 1.2rem 1.4rem;
+    border-bottom: 1px solid #edf2ef;
 }
 
 .comparison-table th {
-    background-color: #0c4a6e;
+    background-color: #075985;
     color: white;
-    font-weight: 600;
-}
-
-.comparison-table tr:last-child td {
-    border-bottom: none;
+    font-weight: 700;
 }
 
 .highlight-positive {
-    color: #065f46;
-    background-color: #ecfdf5;
+    color: #047857;
+    background-color: #f0fdf4;
     font-weight: 600;
 }
 
-/* --- Accordions --- */
+/* --- FAQ Categories and Accordions --- */
 .faq-category {
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
 }
 
 .faq-category h3 {
-    font-size: 1.35rem;
-    margin-bottom: 1.25rem;
-    padding-left: 0.8rem;
-    border-left: 4px solid transparent;
+    font-size: 1.45rem;
+    margin-bottom: 1.5rem;
+    padding-left: 0.9rem;
+    border-left: 5px solid transparent;
+    font-weight: 800;
 }
 
 .cat-general h3 {
@@ -275,20 +322,25 @@ body {
 }
 
 .cat-system h3 {
-    color: #854d0e;
-    border-left-color: #eab308;
+    color: var(--gold);
+    border-left-color: #f59e0b;
 }
 
 .accordion-item {
     background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    margin-bottom: 0.85rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 1rem;
     border-radius: var(--border-radius);
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.75);
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.01);
-    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.accordion-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
 }
 
 .accordion-header {
@@ -296,20 +348,19 @@ body {
     background: none;
     border: none;
     text-align: left;
-    padding: 1.3rem 1.6rem;
-    font-size: 1.05rem;
-    font-weight: 600;
+    padding: 1.4rem 1.8rem;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: var(--text-color);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: var(--transition);
 }
 
 .accordion-header::after {
     content: '+';
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 400;
     transition: transform 0.3s ease;
 }
@@ -319,18 +370,17 @@ body {
 }
 
 .cat-system .accordion-header::after {
-    color: #eab308;
+    color: #f59e0b;
 }
 
-/* Active Accordion Adjustments based on Category Color */
 .cat-general .accordion-item.active .accordion-header {
     background-color: var(--mint);
     color: var(--primary-green);
 }
 
 .cat-system .accordion-item.active .accordion-header {
-    background-color: #fefce8;
-    color: #854d0e;
+    background-color: var(--gold-light);
+    color: var(--gold);
 }
 
 .accordion-item.active .accordion-header::after {
@@ -340,39 +390,50 @@ body {
 .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out, padding 0.3s ease;
-    padding: 0 1.6rem;
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+    padding: 0 1.8rem;
     background: rgba(255, 255, 255, 0.4);
+    color: #384a3f;
 }
 
 .accordion-item.active .accordion-content {
-    padding: 1.3rem 1.6rem;
+    padding: 1.4rem 1.8rem;
+    max-height: 1000px;
+    /* High boundary for dynamic calculation */
 }
 
-/* --- Testimonials Column (Vibrant UI adjustments) --- */
+/* --- Multi-Colored Testimonials Column --- */
 .testimonials-column {
-    background: linear-gradient(to bottom, #ffffff, var(--terracotta-light));
-    padding: 2.2rem 1.8rem;
+    background: linear-gradient(180deg, #ffffff, var(--terracotta-light));
+    padding: 2.5rem 2rem;
     border-radius: var(--border-radius);
     height: fit-content;
-    border: 1px solid rgba(240, 113, 103, 0.15);
+    border: 1px solid rgba(231, 111, 81, 0.15);
+    box-shadow: 0 10px 35px rgba(231, 111, 81, 0.03);
 }
 
 .testimonials-column h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--terracotta);
-    margin-bottom: 1.8rem;
-    border-bottom: 2px solid rgba(240, 113, 103, 0.1);
-    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.sidebar-intro {
+    font-size: 0.9rem;
+    color: #63756a;
+    margin-bottom: 2rem;
+    line-height: 1.4;
 }
 
 .testimonial-card {
     background: white;
-    padding: 1.6rem;
+    padding: 1.8rem;
     border-radius: var(--border-radius);
-    margin-bottom: 1.5rem;
-    box-shadow: 0 6px 16px rgba(240, 113, 103, 0.04);
-    border-top: 4px solid transparent;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.01);
+    border-top: 5px solid transparent;
+    transition: transform 0.3s ease;
 }
 
 .review-1 {
@@ -384,26 +445,41 @@ body {
 }
 
 .review-3 {
+    border-top-color: #f59e0b;
+}
+
+.review-4 {
     border-top-color: var(--terracotta);
 }
 
 .testimonial-card .review {
     font-style: italic;
     font-size: 0.95rem;
-    margin-bottom: 1rem;
-    color: #3d4f45;
+    margin-bottom: 1.25rem;
+    color: #2f3e34;
+}
+
+.user-meta {
+    display: flex;
+    flex-direction: column;
 }
 
 .testimonial-card .author {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 700;
-    color: #4a5d52;
+    color: var(--text-color);
+}
+
+.testimonial-card .location {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #617769;
 }
 
 .no-results {
     text-align: center;
-    padding: 3rem;
-    color: #77887f;
+    padding: 4rem;
+    color: #66786d;
     font-style: italic;
 }
 
@@ -411,24 +487,24 @@ body {
     display: none !important;
 }
 
-/* --- Responsive Optimization (Mobile First/Adjustments) --- */
-@media (max-width: 900px) {
+/* --- Responsive Touch Layout Adaptations --- */
+@media (max-width: 950px) {
     .main-layout {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
-        padding: 0 1rem 4rem 1rem;
+        gap: 3rem;
+        padding: 0 1.2rem 4rem 1.2rem;
     }
 
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
 
     .info-card {
-        padding: 1.75rem;
+        padding: 2rem;
     }
 
     .testimonials-column {
         order: 2;
-        /* Pushes stories below on mobile devices */
+        /* Seamless shift below primary flow for mobile views */
     }
 }
