@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmspherica - Hydroponic Produce Catalog</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Base Styling & Smooth Animations */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+            background-color: #fafdfb;
+        }
+
+        #three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 3D Glassmorphism Card Style & Rotations */
+        .product-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(34, 197, 94, 0.15);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease, opacity 0.4s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) rotateX(4deg) rotateY(-4deg);
+            box-shadow: 0 20px 40px rgba(21, 128, 61, 0.12);
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
+        /* 3D Depth popping elements on hover */
+        .product-card:hover .pop-3d {
+            transform: translateZ(30px);
+        }
+
+        /* Smooth filter fade state transitions */
+        .card-hidden {
+            opacity: 0;
+            transform: scale(0.9) translateY(20px) !important;
+            pointer-events: none;
+            position: absolute;
+            visibility: hidden;
+            width: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        /* Custom active filter style */
+        .filter-btn.active {
+            background-color: #16a34a;
+            color: white;
+            box-shadow: 0 10px 20px rgba(22, 163, 74, 0.25);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <canvas id="three-canvas"></canvas>
+
+    <header class="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-green-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-green-500/20">
+                    Φ</div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-green-700">FARMSPHERICA</span>
+                    <p class="text-[9px] text-green-600 uppercase tracking-widest font-semibold leading-none">
+                        Hydroponics Tech</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#" class="text-green-600 font-semibold">Catalog</a>
+                <a href="#" class="hover:text-green-600 transition">Technology</a>
+                <a href="#" class="hover:text-green-600 transition">Our Mission</a>
+                <a href="#" class="hover:text-green-600 transition">Contact</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-gray-600 hover:text-green-600 transition relative">
+                    <i data-lucide="shopping-basket" class="w-6 h-6"></i>
+                    <span
+                        class="absolute -top-1 -right-1 bg-green-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <span
+                class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-semibold tracking-wider uppercase inline-flex items-center gap-1.5 border border-green-100 shadow-xs">
+                <i data-lucide="leaf" class="w-3.5 h-3.5"></i> Pure Smart Agriculture
+            </span>
+            <h1 class="text-4xl sm:text-5xl font-black text-gray-900 tracking-tight leading-tight">
+                Fresh From Our <br><span
+                    class="text-transparent bg-clip-text bg-gradient-to-r align-middle from-green-600 to-emerald-700">Hydroponic
+                    Spheres</span>
+            </h1>
+            <p class="text-gray-500 font-normal text-md sm:text-lg">
+                100% pesticide-free, sustainably grown using advanced AI-driven nutrient matrixes and 95% less water.
+            </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 mb-16">
+            <button data-filter="all"
+                class="filter-btn active px-6 py-2.5 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-100 hover:border-green-400 hover:bg-green-50 transition-all duration-300 cursor-pointer flex items-center gap-2">
+                All Produce
+            </button>
+            <button data-filter="leafy-greens"
+                class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-100 hover:border-green-400 hover:bg-green-50 transition-all duration-300 cursor-pointer flex items-center gap-2">
+                <i data-lucide="sprout" class="w-4 h-4 text-green-500"></i> Leafy Greens
+            </button>
+            <button data-filter="herbs"
+                class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-100 hover:border-green-400 hover:bg-green-50 transition-all duration-300 cursor-pointer flex items-center gap-2">
+                <i data-lucide="shrub" class="w-4 h-4 text-emerald-500"></i> Herbs
+            </button>
+            <button data-filter="fruits"
+                class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-100 hover:border-green-400 hover:bg-green-50 transition-all duration-300 cursor-pointer flex items-center gap-2">
+                <i data-lucide="cherry" class="w-4 h-4 text-rose-500"></i> Fruits
+            </button>
+        </div>
+
+        <div id="product-grid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10 transition-all duration-500">
+
+            <div class="product-card rounded-3xl overflow-hidden p-5 flex flex-col" data-category="leafy-greens">
+                <div
+                    class="relative w-full h-56 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl overflow-hidden mb-5">
+                    <span
+                        class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-green-700 text-[11px] font-bold px-3 py-1 rounded-full shadow-xs uppercase tracking-wider flex items-center gap-1 z-10">
+                        <i data-lucide="check-circle" class="w-3 h-3 text-green-600"></i> Freshly Grown
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1622206192389-a620d2d576b7?auto=format&fit=crop&q=80&w=600"
+                        alt="Hydroponic Lettuce"
+                        class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="flex-1 flex flex-col space-y-3 pop-3d transition-transform duration-300 ease-out">
+                    <span class="text-xs font-bold text-green-600 uppercase tracking-widest">Leafy Greens</span>
+                    <h3 class="text-xl font-bold text-gray-900 tracking-tight">Butterhead Lettuce</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed flex-1">Crisp, tender layers with a sweet buttery
+                        finish. Cultivated in optimized mineral channels.</p>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block font-medium">Price per head</span>
+                            <span class="text-2xl font-black text-gray-900">$3.49</span>
+                        </div>
+                        <button
+                            class="px-5 py-2.5 bg-gray-900 text-white rounded-xl font-semibold text-xs tracking-wide hover:bg-green-600 shadow-md hover:shadow-green-500/10 transition-all duration-300 flex items-center gap-2 cursor-pointer">
+                            Add to Basket <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card rounded-3xl overflow-hidden p-5 flex flex-col" data-category="herbs">
+                <div
+                    class="relative w-full h-56 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl overflow-hidden mb-5">
+                    <span
+                        class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-green-700 text-[11px] font-bold px-3 py-1 rounded-full shadow-xs uppercase tracking-wider flex items-center gap-1 z-10">
+                        <i data-lucide="check-circle" class="w-3 h-3 text-green-600"></i> Freshly Grown
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1618228473302-1a4c90b01c80?auto=format&fit=crop&q=80&w=600"
+                        alt="Genovese Basil"
+                        class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="flex-1 flex flex-col space-y-3 pop-3d transition-transform duration-300 ease-out">
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Herbs</span>
+                    <h3 class="text-xl font-bold text-gray-900 tracking-tight">Genovese Basil</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed flex-1">Intensely aromatic and peppery. Harvested
+                        directly on the vine for pristine quality and aroma preservation.</p>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block font-medium">Price per bunch</span>
+                            <span class="text-2xl font-black text-gray-900">$2.99</span>
+                        </div>
+                        <button
+                            class="px-5 py-2.5 bg-gray-900 text-white rounded-xl font-semibold text-xs tracking-wide hover:bg-green-600 shadow-md hover:shadow-green-500/10 transition-all duration-300 flex items-center gap-2 cursor-pointer">
+                            Add to Basket <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card rounded-3xl overflow-hidden p-5 flex flex-col" data-category="fruits">
+                <div
+                    class="relative w-full h-56 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl overflow-hidden mb-5">
+                    <span
+                        class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-green-700 text-[11px] font-bold px-3 py-1 rounded-full shadow-xs uppercase tracking-wider flex items-center gap-1 z-10">
+                        <i data-lucide="check-circle" class="w-3 h-3 text-green-600"></i> Freshly Grown
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1590694975560-af148c3132e0?auto=format&fit=crop&q=80&w=600"
+                        alt="Cherry Tomatoes"
+                        class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="flex-1 flex flex-col space-y-3 pop-3d transition-transform duration-300 ease-out">
+                    <span class="text-xs font-bold text-rose-600 uppercase tracking-widest">Fruits</span>
+                    <h3 class="text-xl font-bold text-gray-900 tracking-tight">Ruby Ruby Tomatoes</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed flex-1">Bursting with sweet, vine-ripened sugars.
+                        Vertically supported vines ensure ideal spatial exposure.</p>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block font-medium">Price per 250g</span>
+                            <span class="text-2xl font-black text-gray-900">$4.25</span>
+                        </div>
+                        <button
+                            class="px-5 py-2.5 bg-gray-900 text-white rounded-xl font-semibold text-xs tracking-wide hover:bg-green-600 shadow-md hover:shadow-green-500/10 transition-all duration-300 flex items-center gap-2 cursor-pointer">
+                            Add to Basket <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card rounded-3xl overflow-hidden p-5 flex flex-col" data-category="leafy-greens">
+                <div
+                    class="relative w-full h-56 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl overflow-hidden mb-5">
+                    <span
+                        class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-green-700 text-[11px] font-bold px-3 py-1 rounded-full shadow-xs uppercase tracking-wider flex items-center gap-1 z-10">
+                        <i data-lucide="check-circle" class="w-3 h-3 text-green-600"></i> Freshly Grown
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&q=80&w=600"
+                        alt="Baby Spinach"
+                        class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="flex-1 flex flex-col space-y-3 pop-3d transition-transform duration-300 ease-out">
+                    <span class="text-xs font-bold text-green-600 uppercase tracking-widest">Leafy Greens</span>
+                    <h3 class="text-xl font-bold text-gray-900 tracking-tight">Baby Spinach</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed flex-1">High iron, deep green baby leaves completely
+                        free of grit. Thoroughly nurtured inside closed nutrient spheres.</p>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block font-medium">Price per bag</span>
+                            <span class="text-2xl font-black text-gray-900">$3.80</span>
+                        </div>
+                        <button
+                            class="px-5 py-2.5 bg-gray-900 text-white rounded-xl font-semibold text-xs tracking-wide hover:bg-green-600 shadow-md hover:shadow-green-500/10 transition-all duration-300 flex items-center gap-2 cursor-pointer">
+                            Add to Basket <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card rounded-3xl overflow-hidden p-5 flex flex-col" data-category="herbs">
+                <div
+                    class="relative w-full h-56 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl overflow-hidden mb-5">
+                    <span
+                        class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-green-700 text-[11px] font-bold px-3 py-1 rounded-full shadow-xs uppercase tracking-wider flex items-center gap-1 z-10">
+                        <i data-lucide="check-circle" class="w-3 h-3 text-green-600"></i> Freshly Grown
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1628556260361-98e947cf8f4f?auto=format&fit=crop&q=80&w=600"
+                        alt="Spearmint"
+                        class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="flex-1 flex flex-col space-y-3 pop-3d transition-transform duration-300 ease-out">
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Herbs</span>
+                    <h3 class="text-xl font-bold text-gray-900 tracking-tight">Mentha Spearmint</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed flex-1">Super crisp, sharp menthol properties. Ideal
+                        for healthy dynamic infusions, beverages, or garnishing culinary recipes.</p>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block font-medium">Price per bunch</span>
+                            <span class="text-2xl font-black text-gray-900">$2.49</span>
+                        </div>
+                        <button
+                            class="px-5 py-2.5 bg-gray-900 text-white rounded-xl font-semibold text-xs tracking-wide hover:bg-green-600 shadow-md hover:shadow-green-500/10 transition-all duration-300 flex items-center gap-2 cursor-pointer">
+                            Add to Basket <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card rounded-3xl overflow-hidden p-5 flex flex-col" data-category="fruits">
+                <div
+                    class="relative w-full h-56 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl overflow-hidden mb-5">
+                    <span
+                        class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-green-700 text-[11px] font-bold px-3 py-1 rounded-full shadow-xs uppercase tracking-wider flex items-center gap-1 z-10">
+                        <i data-lucide="check-circle" class="w-3 h-3 text-green-600"></i> Freshly Grown
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&q=80&w=600"
+                        alt="Hydroponic Strawberries"
+                        class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="flex-1 flex flex-col space-y-3 pop-3d transition-transform duration-300 ease-out">
+                    <span class="text-xs font-bold text-rose-600 uppercase tracking-widest">Fruits</span>
+                    <h3 class="text-xl font-bold text-gray-900 tracking-tight">Alpine Strawberries</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed flex-1">Extraordinarily sweet and plump berries
+                        grown off-ground to safeguard optimal pristine condition.</p>
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block font-medium">Price per 200g</span>
+                            <span class="text-2xl font-black text-gray-900">$5.99</span>
+                        </div>
+                        <button
+                            class="px-5 py-2.5 bg-gray-900 text-white rounded-xl font-semibold text-xs tracking-wide hover:bg-green-600 shadow-md hover:shadow-green-500/10 transition-all duration-300 flex items-center gap-2 cursor-pointer">
+                            Add to Basket <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="mt-32 border-t border-gray-100 bg-white/40 backdrop-blur-sm py-8 text-center text-xs text-gray-400">
+        <p>&copy; 2026 Farmspherica Innovations Pvt. Ltd. Pilani, Rajasthan. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // --- 1. Three.js 3D Background System ---
+        const canvas = document.querySelector('#three-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 5;
+
+        // Dynamic Resize Handler
+        function resizeCanvas() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // 3D Organic Particle Cloud (Representing hydroponic fresh air bubbles/nutrients)
+        const particlesCount = 120;
+        const positions = new Float32Array(particlesCount * 3);
+        const randomSpeedFactor = [];
+
+        for (let i = 0; i < particlesCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 10;     // X
+            positions[i + 1] = (Math.random() - 0.5) * 8;    // Y
+            positions[i + 2] = (Math.random() - 0.5) * 4;    // Z
+            randomSpeedFactor.push(Math.random() * 0.003 + 0.001);
+        }
+
+        const particleGeo = new THREE.BufferGeometry();
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        // Creating custom crisp circular particle point material
+        const canvasPoint = document.createElement('canvas');
+        canvasPoint.width = 16;
+        canvasPoint.height = 16;
+        const ctx = canvasPoint.getContext('2d');
+        let grad = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
+        grad.addColorStop(0, 'rgba(34, 197, 94, 0.8)');
+        grad.addColorStop(1, 'rgba(34, 197, 94, 0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 16, 16);
+        const pointTexture = new THREE.CanvasTexture(canvasPoint);
+
+        const particleMat = new THREE.PointsMaterial({
+            size: 0.22,
+            map: pointTexture,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+
+        const particleMesh = new THREE.Points(particleGeo, particleMat);
+        scene.add(particleMesh);
+
+        // Gentle Ambient Illumination for extra layout depth
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        // Handle Tracked Mouse coordinates for interactive 3D shifts
+        let mouseX = 0, mouseY = 0;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+        });
+
+        // 3D Animation Loop Clock
+        const clock = new THREE.Clock();
+
+        function animate() {
+            const elapsedTime = clock.getElapsedTime();
+
+            // Rotate main particle array softly over time
+            particleMesh.rotation.y = elapsedTime * 0.02;
+            particleMesh.rotation.x = elapsedTime * 0.01;
+
+            // Fluid interactive parallax background tracking based on cursor
+            camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 1.5 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+
+        // --- 2. Live Product Filter Functionality ---
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove Active Class across all filter buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const activeFilter = button.getAttribute('data-filter');
+
+                productCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+
+                    if (activeFilter === 'all' || cardCategory === activeFilter) {
+                        card.classList.remove('card-hidden');
+                    } else {
+                        card.classList.add('card-hidden');
+                    }
+                });
+            });
+        });
+
+        // --- 3. Interactive dynamic 3D Card tilt effect ---
+        productCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Find midpoint ratios
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+
+                // Convert to specific axis degrees
+                const rotateX = (yc - y) / 12;
+                const rotateY = (x - xc) / 12;
+
+                card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                // Restore seamless base transform standard when cursor leaves
+                card.style.transform = 'translateY(0px) rotateX(0deg) rotateY(0deg)';
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
