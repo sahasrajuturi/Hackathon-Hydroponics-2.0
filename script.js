@@ -1,54 +1,72 @@
-/**
- * Farmspherica Engine - High Performance Layout Execution Engine
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-    initScrollReveal();
-    animateWaterValue();
-});
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    const searchInput = document.getElementById('searchInput');
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    const categories = document.querySelectorAll('.faq-category');
+    const noResults = document.getElementById('noResults');
 
-/**
- * 1. IntersectionObserver API for Stutter-Free Element Introductions
- * Replaces old window scroll handlers to entirely prevent performance layout thrashing.
- */
-function initScrollReveal() {
-    const reveals = document.querySelectorAll(".reveal");
+    // --- Accordion Toggle Functionality ---
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const currentItem = header.parentElement;
+            const content = currentItem.querySelector('.accordion-content');
 
-    const observerOptions = {
-        root: null,
-        threshold: 0.08,
-        rootMargin: "0px 0px -40px 0px"
-    };
+            // Check if item is already active
+            const isActive = currentItem.classList.contains('active');
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-                observer.unobserve(entry.target); // Kill process execution on targeted item immediately
+            // Close all items in the same category for clean UX
+            const siblingItems = currentItem.parentElement.querySelectorAll('.accordion-item');
+            siblingItems.forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.accordion-content').style.maxHeight = null;
+            });
+
+            // If it wasn't active, open it
+            if (!isActive) {
+                currentItem.classList.add('active');
+                // Calculate real height of inner text for smooth transition without lag
+                content.style.maxHeight = content.scrollHeight + "px";
             }
         });
-    }, observerOptions);
+    });
 
-    reveals.forEach(rev => observer.observe(rev));
-}
+    // --- Live Filtering Search Functionality ---
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase().trim();
+        let totalVisibleQuestions = 0;
 
-/**
- * 2. Asynchronous Precision Counter Animation Loop
- */
-function animateWaterValue() {
-    const el = document.getElementById('live-water-counter');
-    if (!el) return;
+        categories.forEach(category => {
+            let visibleInGroup = 0;
+            const items = category.querySelectorAll('.accordion-item');
 
-    let current = 0;
-    const target = 90;
-    const duration = 1400;
-    const stepTime = Math.floor(duration / target);
+            items.forEach(item => {
+                const textContent = item.textContent.toLowerCase();
 
-    const timer = setInterval(() => {
-        current++;
-        el.textContent = current + "%";
-        if (current === target) {
-            clearInterval(timer);
+                if (textContent.includes(searchTerm)) {
+                    item.classList.remove('hidden');
+                    visibleInGroup++;
+                    totalVisibleQuestions++;
+                } else {
+                    item.classList.add('hidden');
+                    // Collapse item if it's hidden while open
+                    item.classList.remove('active');
+                    item.querySelector('.accordion-content').style.maxHeight = null;
+                }
+            });
+
+            // Hide or show category headers dynamically based on content presence
+            if (visibleInGroup === 0 && searchTerm !== "") {
+                category.classList.add('hidden');
+            } else {
+                category.classList.remove('hidden');
+            }
+        });
+
+        // Display 'no results found' if query matches absolutely nothing
+        if (totalVisibleQuestions === 0 && searchTerm !== "") {
+            noResults.classList.remove('hidden');
+        } else {
+            noResults.classList.add('hidden');
         }
-    }, stepTime);
-}
+    });
+});
