@@ -1,5 +1,5 @@
 /**
- * Farmspherica Engine - High-Performance, Glitch-Free Script Build
+ * Farmspherica Engine - High Performance Asynchronous Layout Script
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,24 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * 1. Intersection Observer Frame for Smooth Scroll Reveals
- * Uses modern IntersectionObserver API instead of standard window listeners 
- * to entirely eliminate layout scroll stuttering.
+ * 1. IntersectionObserver API for Ultra-Smooth Scroll Triggering
+ * Bypasses traditional scroll-event layout thrashing entirely.
  */
 function initScrollReveal() {
     const reveals = document.querySelectorAll(".reveal");
 
     const observerOptions = {
         root: null,
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.08,
+        rootMargin: "0px 0px -40px 0px"
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("active");
-                observer.unobserve(entry.target); // Fire animation once
+                observer.unobserve(entry.target); // Execution ends immediately to conserve processor overhead
             }
         });
     }, observerOptions);
@@ -34,8 +33,7 @@ function initScrollReveal() {
 }
 
 /**
- * 2. Optimized Metric Counter Animation
- * Counts cleanly from 0% up to 90% inside the side diagnostic dashboard.
+ * 2. Optimized Metric Value Diagnostics Counter
  */
 function animateWaterValue() {
     const el = document.getElementById('live-water-counter');
@@ -43,7 +41,7 @@ function animateWaterValue() {
 
     let current = 0;
     const target = 90;
-    const duration = 1500;
+    const duration = 1400;
     const stepTime = Math.floor(duration / target);
 
     const timer = setInterval(() => {
